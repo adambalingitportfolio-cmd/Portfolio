@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Leo Adam Balingit — Graphic Design · Social Media · Content Creation</title>
+
+<!-- PRECONNECT for fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<!-- Non-blocking font load -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/></noscript>
+
+<!-- PRELOAD above-fold critical images only -->
+<link rel="preload" as="image" href="My%20Logo/My%20Logo/My%20Logo.png" fetchpriority="high"/>
+<link rel="preload" as="image" href="My%20Photo/My%20Photo/My%20Pic.JPG" fetchpriority="high"/>
+
+<link rel="icon" type="image/png" href="My%20Logo/My%20Logo/My%20Logo.png"/>
+
+<style>
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;width:100%;max-width:100vw}
+img,svg{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ── TOKENS ── */
+:root{
+  --paper:#FFFFFF;
+  --paper2:#F7F6F1;
+  --white:#FFFFFF;
+  --ink:#171510;
+  --ink2:#56503F;
+  --ink3:#8B8570;
+  --line:#E6E2D4;
+  --surface:#F1EEE2;
+  --surface2:#EAE5D5;
+  --amber:#C9810F;
+  --amber-l:#F2A71B;
+  --amber-d:#9C6608;
+  --lime:#7C8F1E;
+  --lime-l:#D7F23D;
+  --lime-d:#5E6F12;
+  --lime-ink:#5E6F12;
+  --clay:#B5481F;
+  --clay-d:#8E3414;
+  --sage:#5C6E50;
+  --sage-l:#E6EAE0;
+  --cream:#EFE6CF;
+  --display:'Baloo 2',sans-serif;
+  --sans:'Inter',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+  --radius:14px;
+  --shadow:0 10px 30px rgba(23,21,16,0.08),0 2px 8px rgba(23,21,16,0.05);
+  --shadow-hover:0 20px 50px rgba(23,21,16,0.14),0 4px 14px rgba(23,21,16,0.08);
+}
+
+/* ── IMAGE SKELETON (fast perceived load) ── */
+img{content-visibility:auto}
+.img-wrap{position:relative;overflow:hidden;background:var(--surface)}
+.img-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--surface) 25%,var(--surface2) 50%,var(--surface) 75%);
+  background-size:200% 100%;
+  animation:shimmer 1.4s infinite;
+  z-index:0;
+}
+.img-wrap img{position:relative;z-index:1;transition:opacity .3s ease}
+.img-wrap img.loaded{opacity:1}
+.img-wrap img:not(.loaded){opacity:0}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;background:var(--paper);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;transition:opacity .7s ease,visibility .7s ease}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loader-logo{width:82px;height:82px;object-fit:contain;animation:loaderLogo 1.05s cubic-bezier(.22,1,.36,1) both,loaderLogoPulse 1.8s .9s ease-in-out infinite}
+.loader-name{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--ink);letter-spacing:-0.02em;overflow:hidden;text-align:center;padding:0 1rem}
+.loader-name span{display:inline-block;animation:loaderChar .6s cubic-bezier(.22,1,.36,1) both}
+.loader-bar-wrap{width:160px;height:2px;background:var(--line);border-radius:2px;overflow:hidden}
+.loader-bar{height:100%;width:0;background:var(--amber);border-radius:2px;animation:loaderFill 1.2s ease forwards}
+@keyframes loaderLogo{from{transform:translateY(10px) scale(.92);opacity:0;filter:blur(4px)}to{transform:translateY(0) scale(1);opacity:1;filter:blur(0)}}
+@keyframes loaderLogoPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.035);opacity:.88}}
+@keyframes loaderChar{from{transform:translateY(110%);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes loaderFill{from{width:0}to{width:100%}}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;background:rgba(255,255,255,0);backdrop-filter:blur(0px);border-bottom:1px solid transparent;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;transition:background .4s,border-color .4s,backdrop-filter .4s;width:100%}
+nav.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.nav-mark{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:16px;line-height:1;letter-spacing:-0.02em;color:var(--ink);white-space:nowrap;flex-shrink:0;min-width:0}
+.nav-logo{width:30px;height:30px;object-fit:contain;flex-shrink:0}
+.nav-mark .dot{width:8px;height:8px;border-radius:50%;background:var(--clay);animation:pulse 2.5s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.7}}
+.nav-links{display:flex;gap:1.3rem}
+.nav-links a{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink2);padding:6px 2px;border-bottom:1.5px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+.nav-links a:hover{color:var(--ink);border-color:var(--lime-d)}
+.nav-links a.active{color:var(--ink);border-color:var(--clay-d);font-weight:500}
+.nav-cta{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:0.05em;text-transform:uppercase;background:var(--ink);color:var(--white);padding:8px 16px;border-radius:100px;transition:background .25s,transform .25s,box-shadow .25s;white-space:nowrap;flex-shrink:0}
+.nav-actions{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.nav-cta:hover{background:var(--amber);color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,129,15,0.30)}
+.hamburger{display:none;flex-direction:column;gap:5px;width:34px;height:34px;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;flex-shrink:0}
+.hamburger span{width:20px;height:2px;background:var(--ink);border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{position:fixed;top:64px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);z-index:480;display:flex;flex-direction:column;padding:0.5rem 1.5rem 1.25rem;transform:translateY(-110%);opacity:0;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .25s ease;pointer-events:none}
+.mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:all}
+.mobile-menu a{font-family:var(--display);font-weight:600;font-size:16px;padding:10px 4px 10px 12px;border-bottom:1px solid var(--line);color:var(--ink);border-left:3px solid transparent;transition:color .2s,border-color .2s,padding-left .2s}
+.mobile-menu a.active{color:var(--clay-d);border-left-color:var(--clay);padding-left:16px}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1040px;margin:0 auto;padding:0 2.5rem;width:100%}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.reveal-scale{opacity:0;transform:scale(0.92);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+.d1{transition-delay:.06s}.d2{transition-delay:.12s}.d3{transition-delay:.18s}
+.d4{transition-delay:.24s}.d5{transition-delay:.30s}.d6{transition-delay:.36s}
+
+/* ── SHARED ── */
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;color:var(--lime-ink);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.9rem}
+.eyebrow::before{content:'';width:18px;height:1.5px;background:var(--lime-d)}
+hr.rule{border:none;border-top:1px solid var(--line)}
+
+/* ── BAND ── */
+.band{background:var(--surface);color:var(--ink);padding:4.5rem 0;text-align:center;position:relative;overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%, rgba(201,129,15,0.10), transparent 60%);pointer-events:none}
+.band-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--clay-d);margin-bottom:0.9rem;display:inline-flex;align-items:center;gap:8px}
+.band-title{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,6vw,4rem);letter-spacing:-0.01em;line-height:1;color:var(--ink)}
+.band-sub{font-family:var(--sans);font-size:13.5px;color:var(--ink2);max-width:430px;margin:1rem auto 0;line-height:1.7;padding:0 1.25rem}
+#brands .band-sub,
+#graphic-design .band-sub,
+#content-creation .band-sub,
+#expertise .band-sub,
+#tools .band-sub{max-width:620px;padding-left:0.45rem;padding-right:0.45rem}
+
+/* ── SECTION ── */
+.section{padding:5rem 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap}
+.section-title{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,3vw,2rem);letter-spacing:-0.01em;color:var(--ink)}
+.section-note{font-size:12.5px;color:var(--ink3);max-width:280px;line-height:1.6}
+
+/* ── HERO ── */
+.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 1.5rem 3rem;background:
+  radial-gradient(ellipse at 16% 18%, rgba(201,129,15,0.10), transparent 42%),
+  radial-gradient(ellipse at 86% 84%, rgba(124,143,30,0.10), transparent 46%),
+  var(--paper);color:var(--ink);position:relative;overflow:hidden;border-bottom:1px solid var(--line);width:100%}
+.hero-doodle{position:absolute;color:var(--clay);pointer-events:none;z-index:0}
+.hero-doodle-bolt{top:18%;left:9%;width:46px;animation:floatA 6s ease-in-out infinite}
+.hero-doodle-wave{bottom:16%;right:10%;width:64px;animation:floatB 7s ease-in-out infinite;color:var(--lime-d)}
+.hero-doodle-circle{top:24%;right:14%;width:30px;animation:spin 20s linear infinite;opacity:.6;color:var(--amber-d)}
+@keyframes floatA{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-14px) rotate(5deg)}}
+@keyframes floatB{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero-eyebrow{position:relative;z-index:2;margin-bottom:1.5rem;display:inline-flex;align-items:center;justify-content:center;opacity:0;animation:fadeUp .7s .3s cubic-bezier(.22,1,.36,1) forwards;text-align:center}
+.hero-logo{width:clamp(64px,8vw,96px);height:auto;object-fit:contain}
+.hero-title{position:relative;z-index:2;font-family:var(--display);font-weight:800;letter-spacing:-0.01em;line-height:0.9;font-size:clamp(3.2rem,15vw,8.5rem);color:var(--ink);opacity:0;animation:fadeUp .8s .5s cubic-bezier(.22,1,.36,1) forwards;word-break:break-word}
+.hero-sub{position:relative;z-index:2;margin-top:1.6rem;font-family:var(--sans);font-size:14px;color:var(--ink2);max-width:380px;line-height:1.75;opacity:0;animation:fadeUp .7s .75s cubic-bezier(.22,1,.36,1) forwards;padding:0 0.5rem}
+.hero-roles{position:relative;z-index:2;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:2.2rem;opacity:0;animation:fadeUp .7s .95s cubic-bezier(.22,1,.36,1) forwards;padding:0 1rem}
+.hero-roles span{font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;padding:6px 13px;border:1px solid var(--line);border-radius:100px;color:var(--ink2);background:var(--paper2);transition:border-color .3s,color .3s,background .3s}
+.hero-roles span:hover{border-color:var(--amber);color:var(--amber-d);background:var(--cream)}
+.hero-scroll{position:relative;z-index:2;margin-top:2.4rem;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);animation:bob 2.4s 1.4s ease-in-out infinite,fadeUp .5s 1.2s ease forwards;opacity:0}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle, rgba(201,129,15,0.08) 0%, transparent 70%);pointer-events:none;transition:transform .08s linear;transform:translate(-50%,-50%);z-index:0}
+
+/* ── HELLO ── */
+.hello{padding:6rem 0}
+.hello-grid{display:grid;grid-template-columns:230px 1fr;gap:3rem;align-items:center}
+.portrait-wrap{position:relative;width:210px;height:210px}
+.portrait-circle{width:210px;height:210px;border-radius:50%;background:var(--cream);border:1px solid var(--line);overflow:hidden;display:flex;align-items:center;justify-content:center;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.portrait-circle:hover{transform:scale(1.04)}
+.portrait-photo{width:100%;height:100%;object-fit:cover;object-position:center top}
+.portrait-ring{position:absolute;inset:-12px;pointer-events:none;animation:spin 30s linear infinite}
+.hello-title{font-family:var(--display);font-weight:800;font-size:clamp(2rem,4vw,2.6rem);letter-spacing:-0.01em;margin-bottom:1rem;color:var(--ink)}
+.hello-text{font-size:14.5px;color:var(--ink2);max-width:520px;line-height:1.85}
+.hello-text strong{color:var(--ink);font-weight:600}
+.hello-text + .hello-text{margin-top:0.9rem}
+.hello-edu-title{font-family:var(--display);font-weight:800;font-size:1.4rem;letter-spacing:-0.01em;color:var(--ink);margin-top:1.6rem;margin-bottom:0.7rem}
+.hello-edu-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.5rem}
+.hello-edu-block{min-width:0}
+.hello-edu-block .deg{font-family:var(--sans);font-weight:700;font-size:14.5px;color:var(--ink);display:block;line-height:1.35}
+.hello-edu-block .maj{font-style:italic;color:var(--ink2);display:block;font-size:13.5px;line-height:1.35;margin-top:1px}
+.hello-edu-block .sch{font-weight:700;color:var(--ink);display:block;font-size:13.5px;line-height:1.35;margin-top:1px}
+.hello-edu-block .yrs{font-style:italic;color:var(--ink3);display:block;font-size:12.5px;line-height:1.35;margin-top:1px}
+.hello-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.4rem}
+.hello-tags span{font-family:var(--mono);font-size:10.5px;letter-spacing:0.05em;background:var(--paper2);border:1px solid var(--line);padding:4px 11px;border-radius:6px;color:var(--ink2);transition:background .25s,border-color .25s,color .25s,transform .25s}
+.hello-tags span:hover{background:var(--cream);border-color:var(--amber);color:var(--ink);transform:translateY(-2px)}
+
+/* ── SERVICES ── */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.service-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem 1.4rem;display:flex;align-items:flex-start;gap:14px;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s}
+.service-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:var(--amber)}
+.service-emoji{flex-shrink:0;width:42px;height:42px;border-radius:12px;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:20px;transition:background .3s}
+.service-card:hover .service-emoji{background:var(--cream)}
+.service-name{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:-0.01em;color:var(--ink);line-height:1.35}
+
+/* ── CONTENTS BOARD ── */
+.contents-wrap{padding:1rem 0 6rem}
+.contents-board{margin:2.25rem auto 0;width:min(100%,940px);padding:0;text-align:left}
+.contents-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.content-toc-card{position:relative;display:flex;flex-direction:column;min-height:250px;background:var(--white);border:1px solid #ececec;color:#111;overflow:hidden;transition:transform .28s cubic-bezier(.22,1,.36,1),box-shadow .28s,border-color .28s}
+.content-toc-card:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(23,21,16,0.14);border-color:#d8d8d8}
+.toc-title{min-height:42px;padding:18px 34px 7px 10px;font-family:var(--display);font-size:13px;font-weight:800;line-height:1.05;letter-spacing:0;color:#111}
+.toc-number{position:absolute;top:10px;right:10px;font-family:var(--display);font-size:20px;font-weight:800;line-height:1;color:#111}
+.toc-image{flex:1;display:flex;min-height:0;padding:0 10px 10px}
+.toc-image img{width:100%;height:100%;min-height:185px;object-fit:cover;object-position:center top;background:#f7f7f7}
+
+/* ═══════════════════════════════
+   BRANDS GRID
+═══════════════════════════════ */
+.brands-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.brand-card,.logo-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px 14px 18px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:14px;text-align:center;min-height:184px;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s}
+.brand-card:hover,.logo-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:var(--amber)}
+.brand-img-wrap,.logo-mark.logo-image{width:76px;height:76px;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--line);border-radius:18px;color:inherit;overflow:hidden;padding:12px;transition:background .3s}
+.brand-card:hover .brand-img-wrap,.logo-card:hover .logo-mark.logo-image{background:var(--cream)}
+.brand-img-wrap img,.logo-mark.logo-image img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;padding:0;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.brand-card:hover .brand-img-wrap img,.logo-card:hover .logo-mark.logo-image img{transform:scale(1.06)}
+.logo-mark.logo-image img.logo-lf{transform:scale(1.75)}
+.logo-card:hover .logo-mark.logo-image img.logo-lf{transform:scale(1.86)}
+.brand-info{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;min-width:0}
+.brand-name{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:-0.01em;color:var(--ink);line-height:1.2;max-width:100%;overflow-wrap:anywhere}
+.brand-tag{font-family:var(--mono);font-size:9.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink3);overflow-wrap:anywhere}
+
+/* ── LOGO GRID ── */
+.logo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+.portfolio-block{margin-top:3rem}
+.portfolio-block + .portfolio-block{margin-top:3.5rem}
+.portfolio-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.portfolio-title{font-family:var(--display);font-weight:800;font-size:clamp(1.35rem,2.4vw,1.7rem);letter-spacing:-0.01em;color:var(--ink);line-height:1}
+.portfolio-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--lime-ink);margin-bottom:.35rem}
+.portfolio-note{font-size:12px;color:var(--ink3);max-width:300px;line-height:1.55}
+
+/* ── STANDARD ASSET GRID ── */
+.asset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.asset-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s}
+.asset-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:var(--amber)}
+.asset-thumb{height:180px;background:var(--surface);display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--line)}
+.asset-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.22,1,.36,1)}
+.asset-card:hover .asset-thumb img{transform:scale(1.04)}
+.asset-thumb.asset-doc{font-family:var(--display);font-weight:800;font-size:2.4rem;color:var(--clay-d);background:linear-gradient(135deg,var(--surface),var(--cream))}
+.asset-info{padding:12px 14px 14px;text-align:left}
+.asset-name{font-family:var(--display);font-weight:700;font-size:13px;line-height:1.2;color:var(--ink);overflow-wrap:anywhere}
+.asset-type{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-top:5px}
+.asset-grid.compact .asset-thumb{height:150px}
+.asset-grid.wide .asset-thumb{height:210px}
+.email-feature{display:block;width:min(100%,920px);margin:0 auto}
+.email-feature img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);box-shadow:var(--shadow);object-fit:contain}
+
+/* ═══════════════════════════════════════════════════
+   INSTAGRAM-STYLE CARD
+═══════════════════════════════════════════════════ */
+.ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ig-card{background:#fff;border:1px solid #dbdbdb;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 12px rgba(0,0,0,0.07);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .35s;cursor:pointer;text-decoration:none;color:inherit}
+.ig-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.13)}
+.ig-header{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid #f0f0f0;flex-shrink:0}
+.ig-logo{flex-shrink:0;display:flex;align-items:center}
+.ig-logo svg{width:18px;height:18px}
+.ig-username{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:#111;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ig-dots{display:flex;gap:2.5px;flex-shrink:0}
+.ig-dots span{width:3px;height:3px;background:#aaa;border-radius:50%;display:block}
+/* IMAGE WRAP with skeleton */
+.ig-image-wrap{width:100%;aspect-ratio:1/1;background:var(--surface);overflow:hidden;flex-shrink:0;position:relative}
+.ig-image-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--surface) 25%,var(--surface2) 50%,var(--surface) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;z-index:0}
+.ig-image-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .3s ease;position:relative;z-index:1;opacity:0}
+.ig-image-wrap img.loaded{opacity:1}
+.ig-card:hover .ig-image-wrap img{transform:scale(1.04)}
+.ig-image-wrap.ig-tall{aspect-ratio:4/5}
+.ig-image-wrap.ig-fullpage{aspect-ratio:3/4;background:var(--paper2)}
+.ig-image-wrap.ig-fullpage img{object-fit:contain;object-position:top center}
+.ig-card:hover .ig-image-wrap.ig-fullpage img{transform:none}
+#websiteAssets{grid-template-columns:minmax(0,620px);justify-content:center}
+.ig-image-wrap.ig-landscape{aspect-ratio:auto;height:auto;background:var(--paper2)}
+.ig-image-wrap.ig-landscape img{width:100%;height:auto;object-fit:contain;display:block}
+.ig-card:hover .ig-image-wrap.ig-landscape img{transform:none}
+#emailAssets{grid-template-columns:minmax(0,620px);justify-content:center}
+.ig-actions{display:flex;align-items:center;gap:10px;padding:7px 10px 4px;flex-shrink:0}
+.ig-action-left{display:flex;gap:9px;align-items:center;flex:1}
+.ig-action-icon{width:18px;height:18px;color:#262626;flex-shrink:0}
+.ig-action-icon.save{margin-left:auto;color:#262626}
+.ig-caption{padding:3px 10px 9px;flex-shrink:0}
+.ig-caption-user{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;color:#111}
+.ig-caption-text{font-family:'Inter',sans-serif;font-size:10.5px;color:#555;margin-top:1px;line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+
+/* ════════════════════════════════════════
+   DIGITAL ADS CAROUSEL
+════════════════════════════════════════ */
+.ads-carousel-wrap{position:relative;width:100%;user-select:none}
+.ads-carousel-stack{display:flex;flex-direction:column;gap:18px}
+.ads-carousel-viewport{overflow:hidden;border-radius:var(--radius)}
+.ads-carousel-track{display:flex;gap:16px;width:max-content;will-change:transform}
+.ads-carousel-set{display:flex;gap:16px;flex:0 0 auto;padding-right:16px}
+.ads-carousel-track.ads-track-blue{animation:adsSlideLeft 34s linear infinite}
+.ads-carousel-track.ads-track-green{animation:adsSlideRight 34s linear infinite}
+.ads-carousel-wrap:hover .ads-carousel-track{animation-play-state:paused}
+.ads-carousel-track .ig-card{flex:0 0 clamp(190px,22vw,250px);min-width:0}
+@keyframes adsSlideLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes adsSlideRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* ── COUNTER STRIP ── */
+.counter-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:3rem}
+.counter-card{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem 1.4rem;text-align:center}
+.counter-main{display:flex;align-items:flex-start;justify-content:center;gap:10px}
+.counter-num{font-family:var(--display);font-weight:800;font-size:2.6rem;letter-spacing:-0.03em;color:var(--clay-d);line-height:1}
+.counter-side{font-family:var(--sans);font-weight:500;font-size:1.15rem;color:var(--ink3);line-height:1.15;margin-top:.28rem}
+.counter-label{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-top:.4rem}
+
+/* ── SOCIAL MEDIA ── */
+.social-card{aspect-ratio:1;border-radius:12px;position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;overflow:hidden;transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;border:1px solid var(--line)}
+.social-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:var(--shadow-hover)}
+.social-card .tag{font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;opacity:.85}
+.social-card .cap{font-family:var(--display);font-weight:700;font-size:14.5px;letter-spacing:-0.01em;margin-top:3px}
+.social-card .deco{position:absolute;border-radius:50%;opacity:.5;transition:transform .5s cubic-bezier(.22,1,.36,1)}
+.social-card:hover .deco{transform:scale(1.3)}
+.strategy-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:2rem}
+.strategy-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:1.5rem;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s}
+.strategy-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.strategy-card .s-title{font-family:var(--display);font-weight:700;font-size:14.5px;letter-spacing:-0.01em;margin-bottom:.4rem;color:var(--ink)}
+.strategy-card .s-desc{font-size:12.5px;color:var(--ink3);line-height:1.65}
+.strategy-card .s-tag{display:inline-block;margin-top:.8rem;font-family:var(--mono);font-size:9.5px;letter-spacing:.05em;background:var(--paper2);border:1px solid var(--line);padding:3px 10px;border-radius:5px;color:var(--ink2)}
+
+/* ── CONTENT CREATION ── */
+.content-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.content-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;position:relative;overflow:hidden}
+.content-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,129,15,0.05),transparent);opacity:0;transition:opacity .35s}
+.content-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.content-card:hover::after{opacity:1}
+.content-card .c-label{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--lime-ink);margin-bottom:.6rem}
+.content-card .c-title{font-family:var(--display);font-weight:700;font-size:15.5px;letter-spacing:-0.01em;margin-bottom:.5rem;color:var(--ink)}
+.content-card .c-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.content-card .c-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem}
+.content-card .c-tags span{font-family:var(--mono);font-size:9px;letter-spacing:.04em;background:var(--paper2);border:1px solid var(--line);padding:3px 9px;border-radius:5px;color:var(--ink2);transition:background .2s,border-color .2s}
+.content-card:hover .c-tags span{background:var(--cream);border-color:var(--lime-d)}
+.video-section{position:relative}
+.video-head{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:2rem;align-items:end;margin-bottom:1.6rem}
+.video-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--lime-ink);margin-bottom:.45rem}
+.video-title{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1;letter-spacing:-.01em;color:var(--ink)}
+.video-copy{font-size:13px;color:var(--ink2);line-height:1.65}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.video-grid.video-reels{grid-template-columns:repeat(4,1fr)}
+.video-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s}
+.video-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:var(--amber)}
+.video-frame{aspect-ratio:9/16;background:var(--surface);overflow:hidden;border-bottom:1px solid var(--line);position:relative}
+.video-frame.video-wide{aspect-ratio:16/9}
+.video-frame video,.video-frame iframe{width:100%;height:100%;border:0;display:block;object-fit:cover}
+.video-pill{position:absolute;top:10px;left:10px;z-index:2;font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--white);background:rgba(23,21,16,.72);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:4px 8px;backdrop-filter:blur(8px)}
+.video-fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:18px;text-align:center;background:linear-gradient(135deg,var(--surface),var(--cream));color:var(--ink2);font-size:12px;line-height:1.5}
+.video-fallback a{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--clay-d);border:1px solid var(--line);background:var(--white);border-radius:6px;padding:7px 10px}
+.video-frame.video-unavailable video{display:none}
+.video-frame.video-unavailable .video-fallback{display:flex}
+.video-info{padding:12px 14px 14px;text-align:left}
+.video-name{font-family:var(--display);font-weight:700;font-size:13px;line-height:1.2;color:var(--ink);overflow-wrap:anywhere}
+.video-type{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-top:6px}
+.video-feature{display:grid;grid-template-columns:minmax(220px,.85fr) minmax(0,1.4fr);gap:18px;align-items:center;margin-top:2rem;padding:1.2rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.video-feature-copy{padding:0 1rem 0 .2rem}
+.video-feature-copy h3{font-family:var(--display);font-weight:800;font-size:clamp(1.35rem,2.5vw,1.9rem);line-height:1.05;color:var(--ink);letter-spacing:-.01em;margin-bottom:.6rem}
+.video-feature-copy p{font-size:13px;color:var(--ink2);line-height:1.7;max-width:360px}
+.video-card.video-card-wide .video-info{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.process-row{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:2.5rem;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.process-step{padding:1.2rem 1rem;border-right:1px solid var(--line);background:var(--white);transition:background .25s}
+.process-step:last-child{border-right:none}
+.process-step:hover{background:var(--paper2)}
+.process-step .p-num{font-family:var(--mono);font-size:9.5px;color:var(--lime-ink);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.35rem}
+.process-step .p-title{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:-0.01em;margin-bottom:.25rem;color:var(--ink)}
+.process-step .p-desc{font-size:11.5px;color:var(--ink3);line-height:1.5}
+
+/* ── TICKER ── */
+.ticker-wrap{background:var(--surface);overflow:hidden;height:42px;display:flex;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);width:100%}
+.ticker-track{display:flex;gap:0;white-space:nowrap;animation:ticker 26s linear infinite;will-change:transform}
+.ticker-item{font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--clay-d);padding:0 2.4rem;display:flex;align-items:center;gap:10px;opacity:0.85;flex-shrink:0}
+.ticker-item::after{content:'✦';font-size:9px;opacity:0.5}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── EXPERTISE ── */
+.expertise-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px 28px}
+.expertise-item{display:flex;align-items:flex-start;gap:10px;font-size:13.5px;color:var(--ink2);padding:9px 0;border-bottom:1px solid var(--line)}
+.expertise-item .check{flex-shrink:0;width:20px;height:20px;border-radius:5px;background:var(--sage-l);display:flex;align-items:center;justify-content:center;margin-top:1px}
+.expertise-item .check svg{width:12px;height:12px;color:var(--sage)}
+.expertise-item span.label{color:var(--ink);font-weight:500}
+
+/* ── TOOLS ── */
+.tools-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px 18px}
+.tool-item{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--ink2);padding:6px 0}
+.tool-logo{flex-shrink:0;width:22px;height:22px;border-radius:6px;background:var(--white);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.tool-logo img{width:14px;height:14px;object-fit:contain;display:block}
+.tool-logo-fallback{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:10px;color:var(--white);background:var(--ink3)}
+
+/* ── CONTACT ── */
+.contact-single{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:2rem}
+.contact-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem;display:flex;align-items:center;gap:14px;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;max-width:420px;width:100%}
+.contact-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.contact-icon{width:46px;height:46px;border-radius:50%;background:var(--surface);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--clay-d)}
+.contact-card.whatsapp .contact-icon{color:#25D366}
+.contact-label{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin-bottom:.2rem}
+.contact-value{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);word-break:break-all}
+.contact-form{margin-top:2.5rem;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:2.2rem;box-shadow:var(--shadow)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-field{display:flex;flex-direction:column;gap:.4rem}
+.form-field.full{grid-column:1 / -1}
+.form-field label{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3)}
+.form-field input,.form-field textarea{font-family:var(--sans);font-size:13.5px;padding:11px 13px;border:1px solid var(--line);border-radius:9px;background:var(--paper2);color:var(--ink);resize:vertical;transition:border-color .2s,background .2s;width:100%}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--amber);background:var(--white)}
+.form-submit{margin-top:.4rem;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--ink);color:var(--white);padding:12px 24px;border-radius:100px;border:none;cursor:pointer;transition:background .25s,transform .25s,box-shadow .25s}
+.form-submit:hover{background:var(--amber);color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,129,15,0.30)}
+
+/* ── FOOTER / THANKS ── */
+.thanks{background:var(--surface);color:var(--ink);padding:6rem 0;text-align:center;position:relative;overflow:hidden;border-top:1px solid var(--line)}
+.thanks::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%, rgba(201,129,15,0.08), transparent 65%);pointer-events:none}
+.thanks-title{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-0.03em;color:var(--ink)}
+.thanks-sub{font-size:13.5px;color:var(--ink2);max-width:420px;margin:1rem auto 2rem;line-height:1.75;padding:0 1.25rem}
+.thanks-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:var(--ink);color:var(--white);padding:13px 26px;border-radius:100px;transition:transform .25s,background .25s,box-shadow .25s}
+.thanks-cta:hover{transform:translateY(-3px);background:var(--amber);color:var(--ink);box-shadow:0 10px 28px rgba(201,129,15,0.30)}
+footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;border-top:1px solid var(--line);width:100%}
+.foot-name{font-family:var(--display);font-weight:700;font-size:13px;color:var(--ink)}
+.foot-links{display:flex;gap:1.2rem;flex-wrap:wrap}
+.foot-links a{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2);border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
+.foot-links a:hover{color:var(--ink);border-color:var(--clay)}
+.foot-meta{font-family:var(--mono);font-size:10px;color:var(--ink3)}
+
+/* ════════════════ RESPONSIVE 880px ════════════════ */
+@media(max-width:880px){
+  .logo-grid{grid-template-columns:repeat(2,1fr)}
+  .asset-grid{grid-template-columns:repeat(2,1fr)}
+  .ig-grid{grid-template-columns:repeat(2,1fr)}
+  .strategy-row{grid-template-columns:repeat(2,1fr)}
+  .content-grid{grid-template-columns:1fr}
+  .video-grid{grid-template-columns:repeat(2,1fr)}
+  .video-grid.video-reels{grid-template-columns:repeat(2,1fr)}
+  .video-head{grid-template-columns:1fr;gap:.75rem}
+  .video-feature{grid-template-columns:1fr}
+  .video-feature-copy{padding-right:0}
+  .process-row{grid-template-columns:repeat(3,1fr)}
+  .counter-strip{grid-template-columns:repeat(3,1fr)}
+  .tools-grid{grid-template-columns:repeat(3,1fr)}
+  .brands-grid{grid-template-columns:repeat(3,1fr)}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .process-step:nth-child(3){border-right:none}
+  .process-step:nth-child(4){border-top:1px solid var(--line)}
+  .process-step:nth-child(5){border-top:1px solid var(--line)}
+  .ads-carousel-track .ig-card{flex-basis:clamp(180px,32vw,230px)}
+}
+@media(max-width:680px){
+  nav{padding:0 1.25rem;height:60px}
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{top:60px}
+  .wrap{padding:0 1.1rem}
+  .hero{min-height:100svh;padding:90px 1.1rem 3.5rem}
+  .hero-doodle-bolt{top:8%;left:4%;width:26px}
+  .hero-doodle-wave{bottom:8%;right:5%;width:34px}
+  .hero-doodle-circle{display:none}
+  .hero-glow{display:none}
+  .hero-eyebrow{font-size:10px;letter-spacing:0.12em;margin-bottom:1rem}
+  .hero-title{font-size:clamp(2.8rem,14vw,4.5rem)}
+  .hero-sub{font-size:13px;max-width:100%;padding:0 0.25rem}
+  .hero-roles{margin-top:1.5rem;gap:7px;padding:0 0.5rem}
+  .hero-roles span{font-size:9.5px;padding:5px 10px}
+  .ticker-item{font-size:10px;padding:0 1.4rem}
+  .hello{padding:4rem 0}
+  .hello-grid{grid-template-columns:1fr;text-align:center;justify-items:center;gap:2rem}
+  .hello-text{max-width:100%}
+  .hello-tags{justify-content:center}
+  .services-grid{grid-template-columns:1fr;gap:10px}
+  .contents-wrap{padding:1rem 0 3.5rem}
+  .contents-board{margin-top:1.75rem;padding:0}
+  .contents-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .content-toc-card{min-height:220px}
+  .toc-image img{min-height:155px}
+  .band{padding:3.5rem 0}
+  .section{padding:3.5rem 0}
+  .section-head{align-items:flex-start;gap:.6rem;margin-bottom:1.75rem}
+  .section-note{max-width:100%;font-size:12px}
+  .logo-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .asset-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .asset-thumb,.asset-grid.compact .asset-thumb,.asset-grid.wide .asset-thumb{height:150px}
+  .ig-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .brands-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .strategy-row{grid-template-columns:1fr;gap:10px}
+  .counter-strip{grid-template-columns:1fr;gap:10px}
+  .content-grid{grid-template-columns:1fr;gap:10px}
+  .video-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .video-grid.video-reels{grid-template-columns:repeat(2,1fr);gap:10px}
+  .video-feature{gap:12px;margin-top:1.5rem;padding-top:1.5rem}
+  .process-row{grid-template-columns:repeat(2,1fr);border-radius:12px}
+  .process-step{border-right:none;border-bottom:1px solid var(--line)}
+  .process-step:nth-child(odd){border-right:1px solid var(--line)}
+  .process-step:last-child{border-bottom:none;border-right:none}
+  .process-step:nth-child(4){border-top:none}
+  .process-step:nth-child(5){border-top:none}
+  .expertise-grid{grid-template-columns:1fr}
+  .expertise-item{font-size:13px}
+  .tools-grid{grid-template-columns:repeat(2,1fr);gap:8px 14px}
+  .tool-item{font-size:12px}
+  .contact-card{max-width:100%}
+  .contact-form{padding:1.35rem;border-radius:14px}
+  .form-row{grid-template-columns:1fr;gap:10px}
+  .form-submit{width:100%;justify-content:center}
+  footer{padding:2rem 1.1rem;flex-direction:column;align-items:flex-start}
+  .thanks{padding:4rem 0}
+  .thanks-cta{width:auto;padding:12px 22px}
+  .ads-carousel-stack{gap:14px}
+  .ads-carousel-track .ig-card{flex-basis:clamp(160px,44vw,210px)}
+}
+@media(max-width:480px){
+  nav{height:56px;padding:0 1rem}
+  .nav-mark{font-size:13px;gap:6px}
+  .nav-logo{width:26px;height:26px}
+  .mobile-menu{top:56px}
+  .mobile-menu a{font-size:15px}
+  .hero{padding:80px 1rem 3rem}
+  .hero-title{font-size:clamp(2.5rem,16vw,3.8rem)}
+  .hero-sub{font-size:12.5px}
+  .hero-roles span{font-size:9px;padding:4px 9px}
+  .hello{padding:3rem 0}
+  .portrait-wrap,.portrait-circle{width:170px;height:170px}
+  .portrait-ring{inset:-10px}
+  .hello-title{font-size:1.8rem}
+  .hello-text{font-size:13.5px}
+  .band-title{font-size:clamp(2rem,12vw,3rem)}
+  .band-sub{font-size:12.5px}
+  .contents-grid{grid-template-columns:1fr}
+  .content-toc-card{min-height:260px}
+  .toc-image img{min-height:195px}
+  .logo-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .asset-grid{grid-template-columns:1fr;gap:10px}
+  .asset-thumb,.asset-grid.compact .asset-thumb,.asset-grid.wide .asset-thumb{height:210px}
+  .video-grid{grid-template-columns:1fr;gap:10px}
+  .video-grid.video-reels{grid-template-columns:1fr;gap:10px}
+  .video-card.video-card-wide .video-info{display:block}
+  .portfolio-head{align-items:flex-start;gap:.55rem}
+  .brands-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .brand-card,.logo-card{min-height:168px;padding:18px 10px 15px}
+  .brand-img-wrap,.logo-mark.logo-image{width:68px;height:68px;padding:10px;border-radius:16px}
+  .brand-name{font-size:12px}
+  .brand-tag{font-size:9px}
+  .ig-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .counter-num{font-size:2.2rem}
+  .tools-grid{grid-template-columns:repeat(2,1fr);gap:8px 12px}
+  .process-row{grid-template-columns:1fr}
+  .process-step{border-right:none !important;border-bottom:1px solid var(--line)}
+  .process-step:last-child{border-bottom:none}
+  footer{padding:1.75rem 1rem}
+  .foot-links{gap:.75rem}
+  .thanks-cta{width:100%;justify-content:center}
+  .form-submit{width:100%;justify-content:center}
+  .ads-carousel-track .ig-card{flex-basis:78vw}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img class="loader-logo" src="My%20Logo/My%20Logo/My%20Logo.png" alt="Leo Adam Balingit logo" fetchpriority="high"/>
+  <div class="loader-name">
+    <span style="animation-delay:.02s">L</span><span style="animation-delay:.05s">E</span><span style="animation-delay:.08s">O</span><span style="animation-delay:.14s;margin-left:8px">A</span><span style="animation-delay:.17s">D</span><span style="animation-delay:.2s">A</span><span style="animation-delay:.23s">M</span><span style="animation-delay:.3s;margin-left:8px">B</span><span style="animation-delay:.33s">A</span><span style="animation-delay:.36s">L</span><span style="animation-delay:.39s">I</span><span style="animation-delay:.42s">N</span><span style="animation-delay:.45s">G</span><span style="animation-delay:.48s">I</span><span style="animation-delay:.51s">T</span>
+  </div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#top" class="nav-mark">
+    <img class="nav-logo" src="My%20Logo/My%20Logo/My%20Logo.png" alt="Leo Adam Balingit logo" fetchpriority="high" loading="eager"/>
+    LEO ADAM BALINGIT
+  </a>
+  <ul class="nav-links">
+    <li><a href="#clients-brands">Clients and Brands</a></li>
+    <li><a href="#brands">Logofolio</a></li>
+    <li><a href="#graphic-design">Graphic Design</a></li>
+    <li><a href="#social-media">Social Media</a></li>
+    <li><a href="#content-creation">Content Creation</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#contact-page">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a class="nav-cta" href="#contact-page">Email Me →</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#clients-brands" class="mlink">Clients and Brands</a>
+  <a href="#brands" class="mlink">Logofolio</a>
+  <a href="#graphic-design" class="mlink">Graphic Design</a>
+  <a href="#social-media" class="mlink">Social Media</a>
+  <a href="#content-creation" class="mlink">Content Creation</a>
+  <a href="#expertise" class="mlink">Areas of Expertise</a>
+  <a href="#tools" class="mlink">Tools</a>
+  <a href="#contact-page" class="mlink">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-glow" id="heroGlow"></div>
+  <svg class="hero-doodle hero-doodle-bolt" viewBox="0 0 46 46" fill="none"><path d="M8 6 L8 34 L16 27 L21 38 L26 36 L21 25 L31 24 Z" fill="currentColor"/></svg>
+  <svg class="hero-doodle hero-doodle-wave" viewBox="0 0 100 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M4 28 Q20 4 38 24 T74 18 T98 26"/></svg>
+  <svg class="hero-doodle hero-doodle-circle" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="20" cy="20" r="14" stroke-dasharray="3 6"/></svg>
+  <div class="hero-eyebrow">
+    <img class="hero-logo" src="My%20Logo/My%20Logo/My%20Logo.png" alt="Leo Adam Balingit logo" fetchpriority="high" loading="eager"/>
+  </div>
+  <h1 class="hero-title">Leo Adam Balingit</h1>
+  <p class="hero-sub">Creating designs and marketing strategies that help businesses attract, engage, and convert customers</p>
+  <div class="hero-roles">
+    <span>Digital Marketing Specialist</span><span>Graphic Designer</span><span>Social Media Manager</span>
+  </div>
+  <div class="hero-scroll">Scroll ↓</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">Logo Design</span>
+    <span class="ticker-item">Brand Identity</span>
+    <span class="ticker-item">Instagram Strategy</span>
+    <span class="ticker-item">Content Planning</span>
+    <span class="ticker-item">Visual Direction</span>
+    <span class="ticker-item">Copywriting</span>
+    <span class="ticker-item">Reels &amp; Shorts</span>
+    <span class="ticker-item">Community Management</span>
+    <span class="ticker-item">Email Campaigns</span>
+    <span class="ticker-item">Logo Design</span>
+    <span class="ticker-item">Brand Identity</span>
+    <span class="ticker-item">Instagram Strategy</span>
+    <span class="ticker-item">Content Planning</span>
+    <span class="ticker-item">Visual Direction</span>
+    <span class="ticker-item">Copywriting</span>
+    <span class="ticker-item">Reels &amp; Shorts</span>
+    <span class="ticker-item">Community Management</span>
+    <span class="ticker-item">Email Campaigns</span>
+  </div>
+</div>
+
+<!-- HELLO -->
+<div class="wrap">
+  <section class="hello" id="hello">
+    <div class="hello-grid">
+      <div class="portrait-wrap reveal-left">
+        <svg class="portrait-ring" viewBox="0 0 210 210">
+          <circle cx="105" cy="105" r="101" fill="none" stroke="#B5481F" stroke-width="2" stroke-dasharray="2 7" opacity="0.5"/>
+        </svg>
+        <div class="portrait-circle">
+          <img class="portrait-photo" src="My%20Photo/My%20Photo/My%20Pic.JPG" alt="Leo Adam Balingit" fetchpriority="high" loading="eager" decoding="sync"/>
+        </div>
+      </div>
+      <div class="reveal-right d2">
+        <p>Hello!</p>
+        <h2 class="hello-title">I'm Leo Adam Balingit.</h2>
+        <p class="hello-text">I'm a <strong>Digital Marketing and Creative Professional</strong> passionate about transforming ideas into impactful brands through strategic marketing, creative design, and compelling digital experiences.</p>
+        <p class="hello-text">With a strong foundation in <strong>leadership, marketing strategy, and visual communication</strong>, I help businesses achieve their goals by creating campaigns that not only look great but also deliver meaningful results. I thrive in fast-paced environments, embrace continuous learning, and enjoy collaborating with teams to turn creative ideas into successful outcomes.</p>
+        <h3 class="hello-edu-title">Education</h3>
+        <div class="hello-edu-list">
+          <div class="hello-edu-block">
+            <span class="deg">Master of Arts in Communication</span>
+            <span class="maj">Major in Communication Management</span>
+            <span class="sch">Polytechnic University of the Philippines</span>
+            <span class="yrs">2025 – 2026</span>
+          </div>
+          <div class="hello-edu-block">
+            <span class="deg">Bachelor of Multimedia Arts</span>
+            <span class="maj">Major in Film</span>
+            <span class="sch">University of Makati</span>
+            <span class="yrs">2018 – 2022</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr class="rule"/>
+
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <p>What I Offer</p>
+    <h2 class="section-title" style="margin-bottom:2rem">My Services</h2>
+    <div class="services-grid">
+      <div class="service-card reveal d1"><div class="service-emoji">🎨</div><div class="service-name">Graphic Design</div></div>
+      <div class="service-card reveal d2"><div class="service-emoji">📱</div><div class="service-name">Social Media Management</div></div>
+      <div class="service-card reveal d3"><div class="service-emoji">📢</div><div class="service-name">Digital Marketing</div></div>
+      <div class="service-card reveal d4"><div class="service-emoji">✨</div><div class="service-name">Branding &amp; Brand Identity</div></div>
+      <div class="service-card reveal d5"><div class="service-emoji">🌐</div><div class="service-name">Website Design</div></div>
+      <div class="service-card reveal d6"><div class="service-emoji">🎥</div><div class="service-name">Video Editing</div></div>
+      <div class="service-card reveal d1"><div class="service-emoji">📝</div><div class="service-name">Content Creation &amp; Copywriting</div></div>
+      <div class="service-card reveal d2"><div class="service-emoji">📸</div><div class="service-name">Photo Editing &amp; Creative Retouching</div></div>
+      <div class="service-card reveal d3"><div class="service-emoji">📈</div><div class="service-name">Marketing Strategy &amp; Campaign Planning</div></div>
+      <div class="service-card reveal d4"><div class="service-emoji">🎯</div><div class="service-name">Paid Advertising (Meta &amp; Google)</div></div>
+      <div class="service-card reveal d5"><div class="service-emoji">🤝</div><div class="service-name">Influencer Marketing</div></div>
+    </div>
+  </section>
+  <hr class="rule"/>
+
+  <!-- CONTENTS -->
+  <section class="contents-wrap" id="contents">
+    <p style="text-align:center">What's Inside</p>
+    <h2 class="section-title" style="text-align:center">Contents</h2>
+    <div class="contents-board reveal-scale">
+      <div class="contents-grid">
+        <a class="content-toc-card" href="#brands" aria-label="Go to Logofolio">
+          <span class="toc-title">Logofolio</span>
+          <span class="toc-number">01</span>
+          <span class="toc-image"><img src="Table%20of%20Content/Logofolo.png" alt="Logofolio preview" loading="lazy" decoding="async"/></span>
+        </a>
+        <a class="content-toc-card" href="#graphic-design" aria-label="Go to Branding">
+          <span class="toc-title">Branding</span>
+          <span class="toc-number">02</span>
+          <span class="toc-image"><img src="Table%20of%20Content/Branding.png" alt="Branding preview" loading="lazy" decoding="async"/></span>
+        </a>
+        <a class="content-toc-card" href="#social-media" aria-label="Go to Social Media">
+          <span class="toc-title">Social Media</span>
+          <span class="toc-number">03</span>
+          <span class="toc-image"><img src="Table%20of%20Content/Social%20Media.png" alt="Social media preview" loading="lazy" decoding="async"/></span>
+        </a>
+        <a class="content-toc-card" href="#content-creation" aria-label="Go to Video Editing">
+          <span class="toc-title">Video Editing</span>
+          <span class="toc-number">04</span>
+          <span class="toc-image"><img src="Table%20of%20Content/Video%20Editing.png" alt="Video editing preview" loading="lazy" decoding="async"/></span>
+        </a>
+        <a class="content-toc-card" href="#expertise" aria-label="Go to Tools and Expertise">
+          <span class="toc-title">Tools and Expertise</span>
+          <span class="toc-number">05</span>
+          <span class="toc-image"><img src="Table%20of%20Content/Tools%20and%20Expertise.png" alt="Tools and expertise preview" loading="lazy" decoding="async"/></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ 01 CLIENTS AND BRANDS ═══ -->
+<div class="band" id="clients-brands">
+  <p class="band-tag reveal">01 - Collaborations</p>
+  <h2 class="band-title reveal">Clients and Brands</h2>
+  <p class="band-sub reveal">Brands and client identities I've worked with across design, marketing, and content projects.</p>
+</div>
+<div class="wrap">
+  <section class="section">
+    <div class="logo-grid">
+      <div class="logo-card reveal d1"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/Ascend_Experience_LLC.png" alt="Ascend Experience LLC" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Ascend Experience LLC</div><div class="brand-tag">Sales Coaching</div></div></div>
+      <div class="logo-card reveal d2"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/AVAGaming.png" alt="AVA Gaming" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">AVA Gaming</div><div class="brand-tag">IGaming</div></div></div>
+      <div class="logo-card reveal d3"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/BetAlly.png" alt="BetAlly" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">BetAlly</div><div class="brand-tag">White Label Solutions</div></div></div>
+      <div class="logo-card reveal d4"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/BolaTV.png" alt="BolaTV" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">BolaTV</div><div class="brand-tag">Entertainment</div></div></div>
+      <div class="logo-card reveal d5"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/HP.png" alt="HP" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">HP</div><div class="brand-tag">Lottery System</div></div></div>
+      <div class="logo-card reveal d6"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/Khelo100.png" alt="Khelo100" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Khelo100</div><div class="brand-tag">IGaming</div></div></div>
+      <div class="logo-card reveal d1"><div class="logo-mark logo-image"><img class="logo-lf" src="Clients%20and%20Brands/Clients%20and%20Brands/LF.png" alt="LF" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">LF</div><div class="brand-tag">Film</div></div></div>
+      <div class="logo-card reveal d2"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/LIVEFEST%20Logo.png" alt="LIVEFEST" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">LIVEFEST</div><div class="brand-tag">IGaming</div></div></div>
+      <div class="logo-card reveal d3"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/LNPLAY-Orig.png" alt="LNPLAY" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">LNPLAY</div><div class="brand-tag">IGaming</div></div></div>
+      <div class="logo-card reveal d4"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/Mikiworld%20Logo.png" alt="Mikiworld" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Mikiworld</div><div class="brand-tag">IGaming</div></div></div>
+      <div class="logo-card reveal d5"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/OC%20Togel%20Square%20Full%20Original.png" alt="OC Togel" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">OC Togel</div><div class="brand-tag">Lottery System</div></div></div>
+      <div class="logo-card reveal d6"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/ole777-removebg-preview.png" alt="OLE777" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">OLE777</div><div class="brand-tag">IGaming</div></div></div>
+      <div class="logo-card reveal d1"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/OlimpicVIP%20Horizontal%20Full%20Original.png.png" alt="Olimpic VIP" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Olimpic VIP</div><div class="brand-tag">IGaming</div></div></div>
+      <div class="logo-card reveal d2"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/One2play.png" alt="One2play" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">One2play</div><div class="brand-tag">IGaming</div></div></div>
+      <div class="logo-card reveal d3"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/Tailored%20Canvases.png" alt="Tailored Canvases" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Tailored Canvases</div><div class="brand-tag">Wall Decors</div></div></div>
+      <div class="logo-card reveal d4"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/TEllmyTale_Logo_wide_1.avif" alt="Tell My Tale" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Tell My Tale</div><div class="brand-tag">Kid Books</div></div></div>
+      <div class="logo-card reveal d5"><div class="logo-mark logo-image"><img src="Clients%20and%20Brands/Clients%20and%20Brands/WonderMe.png" alt="WonderMe" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">WonderMe</div><div class="brand-tag">Portraits</div></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ 02 LOGOFOLIO ═══ -->
+<div class="band" id="brands">
+  <p class="band-tag reveal">02 - Identity</p>
+  <h2 class="band-title reveal">Logofolio</h2>
+  <p class="band-sub reveal">A logo is often the first impression of a brand, and I believe it should be memorable, meaningful, and built to last. In this collection, you'll find logos I've designed to work seamlessly across digital platforms, print materials, packaging, and everything in between.</p>
+</div>
+<div class="wrap">
+  <section class="section">
+    <div class="logo-grid">
+      <div class="logo-card reveal d1"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/A3%20Graphics.png" alt="A3 Graphics" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">A3 Graphics</div><div class="brand-tag">Creative Services</div></div></div>
+      <div class="logo-card reveal d2"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/BARISTA%20HUB.png" alt="Barista Hub" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Barista Hub</div><div class="brand-tag">Barista Training Center</div></div></div>
+      <div class="logo-card reveal d3"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/Cup%20%26%20Go.png" alt="Cup &amp; Go" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Cup &amp; Go</div><div class="brand-tag">Coffee Shop</div></div></div>
+      <div class="logo-card reveal d4"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/Elev%C3%A9%20Wellness.png" alt="Eleve Wellness" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Eleve Wellness</div><div class="brand-tag">Health &amp; Wellness</div></div></div>
+      <div class="logo-card reveal d5"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/GOLDEN%20CAFE.png" alt="Golden Cafe" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Golden Cafe</div><div class="brand-tag">Coffee Shop</div></div></div>
+      <div class="logo-card reveal d6"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/Logos.png" alt="Fork Republic" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Fork Republic</div><div class="brand-tag">Restaurant</div></div></div>
+      <div class="logo-card reveal d1"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/MediTrust.png" alt="MediTrust" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">MediTrust</div><div class="brand-tag">Pharmacy</div></div></div>
+      <div class="logo-card reveal d2"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/Nails%20O%E2%80%99Clock.png" alt="Nails O'Clock" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Nails O'Clock</div><div class="brand-tag">Spa Services</div></div></div>
+      <div class="logo-card reveal d3"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/Studio%20Belleza.png" alt="Nature Cosmetic" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Nature Cosmetic</div><div class="brand-tag">Beauty &amp; Cosmetics</div></div></div>
+      <div class="logo-card reveal d4"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/The%20Quiet%20Cup.png" alt="The Quiet Cup" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">The Quiet Cup</div><div class="brand-tag">Coffee Shop</div></div></div>
+      <div class="logo-card reveal d5"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/unwind.png" alt="Unwind" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Unwind</div><div class="brand-tag">Beauty &amp; Cosmetics</div></div></div>
+      <div class="logo-card reveal d6"><div class="logo-mark logo-image"><img src="Logofolio/Logofolio/veraluxe.png" alt="Veraluxe" loading="lazy" decoding="async"/></div><div class="brand-info"><div class="brand-name">Veraluxe</div><div class="brand-tag">Beauty &amp; Cosmetics</div></div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ 02 GRAPHIC DESIGN ═══ -->
+<div class="band" id="graphic-design">
+  <p class="band-tag reveal">02 — Visual</p>
+  <h2 class="band-title reveal">Graphic Design</h2>
+  <p class="band-sub reveal">This section showcases some of my favorite design projects from social media creatives and brand guidelines to packaging, website visuals, email campaigns, flyers, and event materials. I enjoy turning ideas into visuals that not only look great but also communicate a brand's message effectively.</p>
+</div>
+<div class="wrap">
+  <section class="section">
+    <div class="portfolio-block">
+      <div class="portfolio-head">
+        <div><div class="portfolio-kicker reveal">02a</div><h3 class="portfolio-title reveal">Branding</h3></div>
+        <p class="portfolio-note reveal d2">Brand guidelines and identity systems prepared for consistent rollout.</p>
+      </div>
+      <div class="asset-grid" id="brandingAssets"></div>
+    </div>
+    <div class="portfolio-block">
+      <div class="portfolio-head">
+        <div><div class="portfolio-kicker reveal">02b</div><h3 class="portfolio-title reveal">Package Designs / Merch Designs</h3></div>
+        <p class="portfolio-note reveal d2">Packaging mockups, product concepts, and branded merchandise applications.</p>
+      </div>
+      <div class="asset-grid" id="packagingAssets"></div>
+    </div>
+    <div class="portfolio-block">
+      <div class="portfolio-head">
+        <div><div class="portfolio-kicker reveal">02c</div><h3 class="portfolio-title reveal">Booth Designs</h3></div>
+        <p class="portfolio-note reveal d2">Event booth layouts built for different activation levels and footprints.</p>
+      </div>
+      <div class="ig-grid" id="boothAssets"></div>
+    </div>
+    <div class="portfolio-block">
+      <div class="portfolio-head">
+        <div><div class="portfolio-kicker reveal">02d</div><h3 class="portfolio-title reveal">Email Designs</h3></div>
+        <p class="portfolio-note reveal d2">Campaign-ready email banners and newsletters designed for clean, quick scanning.</p>
+      </div>
+      <div class="ig-grid" id="emailAssets"></div>
+    </div>
+    <div class="portfolio-block">
+      <div class="portfolio-head">
+        <div><div class="portfolio-kicker reveal">02e</div><h3 class="portfolio-title reveal">Website Design</h3></div>
+        <p class="portfolio-note reveal d2">Web page visuals and layout design for digital-first presentation.</p>
+      </div>
+      <div class="ig-grid" id="websiteAssets"></div>
+    </div>
+    <div class="portfolio-block">
+      <div class="portfolio-head">
+        <div><div class="portfolio-kicker reveal">02f</div><h3 class="portfolio-title reveal">Flyers</h3></div>
+        <p class="portfolio-note reveal d2">Promotional layouts for campaign and event communication.</p>
+      </div>
+      <div class="asset-grid" id="flyerAssets"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ 03 SOCIAL MEDIA MANAGEMENT ═══ -->
+<div class="band" id="social-media">
+  <p class="band-tag reveal">03 — Strategy</p>
+  <h2 class="band-title reveal">Social Media Management</h2>
+  <p class="band-sub reveal">Managing feeds, building audiences, and making every post worth stopping for.</p>
+</div>
+<div class="wrap">
+  <section class="section">
+    <div class="counter-strip">
+      <div class="counter-card reveal-scale d1">
+        <div class="counter-main"><div class="counter-num" data-target="340">0</div><div class="counter-side">k+</div></div>
+        <div class="counter-label">Followers grown across client accounts</div>
+      </div>
+      <div class="counter-card reveal-scale d2">
+        <div class="counter-main"><div class="counter-num" data-target="500">0</div><div class="counter-side">+</div></div>
+        <div class="counter-label">Social media posts created</div>
+      </div>
+      <div class="counter-card reveal-scale d3">
+        <div class="counter-main"><div class="counter-num" data-target="50">0</div><div class="counter-side">+</div></div>
+        <div class="counter-label">Brands managed</div>
+      </div>
+    </div>
+    <div class="portfolio-head">
+      <div><div class="portfolio-kicker reveal">03a</div><h3 class="portfolio-title reveal">Social Media Posts</h3></div>
+      <p class="portfolio-note reveal d2">Feed-ready social visuals built for campaigns, announcements, and engagement.</p>
+    </div>
+    <div class="ig-grid" id="socialPostAssets"></div>
+    <div class="portfolio-block">
+      <div class="portfolio-head">
+        <div><div class="portfolio-kicker reveal">03b</div><h3 class="portfolio-title reveal">Digital Ads</h3></div>
+        <p class="portfolio-note reveal d2">Static ads, story placements, and carousel creatives for paid campaigns.</p>
+      </div>
+      <div class="ads-carousel-wrap reveal">
+        <div class="ads-carousel-stack" aria-label="Digital ads carousel">
+          <div class="ads-carousel-viewport">
+            <div class="ads-carousel-track ads-track-blue" id="adsTrackBlue"></div>
+          </div>
+          <div class="ads-carousel-viewport">
+            <div class="ads-carousel-track ads-track-green" id="adsTrackGreen"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="strategy-row">
+      <div class="strategy-card reveal d1">
+        <div class="s-title">Content Calendar</div>
+        <div class="s-desc">Monthly planning mapped to launches, campaigns, and seasonal moments so every post goes out with purpose.</div>
+        <span class="s-tag">Planning · Scheduling</span>
+      </div>
+      <div class="strategy-card reveal d2">
+        <div class="s-title">Community Management</div>
+        <div class="s-desc">Daily engagement, comment replies, and DM handling — keeping the audience warm and the brand voice consistent.</div>
+        <span class="s-tag">Engagement · Moderation</span>
+      </div>
+      <div class="strategy-card reveal d3">
+        <div class="s-title">Analytics &amp; Reporting</div>
+        <div class="s-desc">Monthly performance reviews covering reach, engagement, and follower growth — with clear recommendations.</div>
+        <span class="s-tag">Insights · Growth</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ 04 CONTENT CREATION / VIDEO EDITING ═══ -->
+<div class="band" id="content-creation">
+  <p class="band-tag reveal">04 — Video</p>
+  <h2 class="band-title reveal">Content Creation / Video Editing</h2>
+  <p class="band-sub reveal">Video is one of the most powerful ways to tell a story. I create and edit videos that are optimized for different platforms, whether it's short-form content for Reels and TikTok or longer promotional videos that strengthen a brand's identity and message.</p>
+</div>
+<div class="wrap">
+  <section class="section video-section">
+    <div class="video-head">
+      <div>
+        <div class="video-eyebrow reveal">Selected edits</div>
+        <h3 class="video-title reveal d1">Reels &amp; Video Projects</h3>
+      </div>
+      <p class="video-copy reveal d2">Short-form edits and a long-form vlog sample, arranged as one clean video portfolio section.</p>
+    </div>
+    <div class="video-grid video-reels">
+      <div class="video-card reveal d1">
+        <div class="video-frame"><span class="video-pill">Reel</span><video src="Videos/Wall%20Decors.h264.mp4#t=0.1" controls muted playsinline preload="none"></video></div>
+        <div class="video-info"><div class="video-name">Wall Decors</div><div class="video-type">Reel / Video Editing</div></div>
+      </div>
+      <div class="video-card reveal d2">
+        <div class="video-frame"><span class="video-pill">Reel</span><video src="Videos/Portraits.h264.mp4#t=0.1" controls muted playsinline preload="none"></video></div>
+        <div class="video-info"><div class="video-name">Portraits</div><div class="video-type">Reel / Video Editing</div></div>
+      </div>
+      <div class="video-card reveal d3">
+        <div class="video-frame"><span class="video-pill">Reel</span><video src="Videos/Kid%20Books.h264.mp4#t=0.1" controls muted playsinline preload="none"></video></div>
+        <div class="video-info"><div class="video-name">Kid Books</div><div class="video-type">Reel / Video Editing</div></div>
+      </div>
+      <div class="video-card reveal d4">
+        <div class="video-frame"><span class="video-pill">Reel</span><video src="Videos/iGaming.mp4#t=0.1" controls muted playsinline preload="none"></video></div>
+        <div class="video-info"><div class="video-name">iGaming</div><div class="video-type">Reel / Video Editing</div></div>
+      </div>
+    </div>
+    <div class="video-feature reveal d2">
+      <div class="video-feature-copy">
+        <div class="video-eyebrow">04b &mdash; Long-form edit</div>
+        <h3>Vlog</h3>
+        <p>Long-form YouTube edit displayed as the feature piece below the reel grid.</p>
+      </div>
+      <div class="video-card video-card-wide">
+        <div class="video-frame video-wide">
+          <span class="video-pill">YouTube</span>
+          <iframe src="https://www.youtube.com/embed/kvbsp0wM9f0" title="Japan Vlog Part 1" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <div class="video-info"><div class="video-name">Japan Vlog Part 1</div><div class="video-type">YouTube / Long-form Edit</div></div>
+      </div>
+    </div>
+    <div class="process-row reveal">
+      <div class="process-step"><div class="p-num">Step 01</div><div class="p-title">Plan</div><div class="p-desc">Concept, references &amp; content direction</div></div>
+      <div class="process-step"><div class="p-num">Step 02</div><div class="p-title">Edit</div><div class="p-desc">Pacing, sequencing &amp; story structure</div></div>
+      <div class="process-step"><div class="p-num">Step 03</div><div class="p-title">Enhance</div><div class="p-desc">Captions, sound, color &amp; motion touches</div></div>
+      <div class="process-step"><div class="p-num">Step 04</div><div class="p-title">Export</div><div class="p-desc">Format for Reels, Shorts, TikTok &amp; YouTube</div></div>
+      <div class="process-step"><div class="p-num">Step 05</div><div class="p-title">Review</div><div class="p-desc">Final polish for brand and platform fit</div></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ 05 AREAS OF EXPERTISE ═══ -->
+<div class="band" id="expertise">
+  <p class="band-tag reveal">05 — Skills</p>
+  <h2 class="band-title reveal">Areas of Expertise</h2>
+  <p class="band-sub reveal">Over the years, I've developed a diverse skill set that combines creativity with strategy. Whether it's graphic design, branding, digital marketing, content creation, or campaign planning, I enjoy helping businesses bring their ideas to life and achieve meaningful results. I approach every project with a problem-solving mindset — blending analytical thinking with creative execution to deliver outcomes that are both intentional and effective.</p>
+</div>
+<div class="wrap">
+  <section class="section">
+    <div class="expertise-grid">
+      <div class="expertise-item reveal d1"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Digital Marketing Strategy &amp; Execution</span></div>
+      <div class="expertise-item reveal d1"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Cross-functional Team Collaboration</span></div>
+      <div class="expertise-item reveal d2"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Email Marketing</span></div>
+      <div class="expertise-item reveal d2"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Project &amp; Workflow Management</span></div>
+      <div class="expertise-item reveal d3"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Brand Communication &amp; Storytelling</span></div>
+      <div class="expertise-item reveal d3"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Graphic Design &amp; Visual Development</span></div>
+      <div class="expertise-item reveal d4"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Campaign Planning &amp; Management</span></div>
+      <div class="expertise-item reveal d4"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Video Editing &amp; Motion Content Creation</span></div>
+      <div class="expertise-item reveal d5"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Marketing Operations &amp; Coordination</span></div>
+      <div class="expertise-item reveal d5"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Market Research &amp; Trend Analysis</span></div>
+      <div class="expertise-item reveal d6"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Digital Asset Management (DAM)</span></div>
+      <div class="expertise-item reveal d6"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Data Tracking &amp; Performance Reporting</span></div>
+      <div class="expertise-item reveal d1"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Lead Generation &amp; Outreach Campaigns</span></div>
+      <div class="expertise-item reveal d2"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Content Distribution &amp; Platform Management</span></div>
+      <div class="expertise-item reveal d3"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Talent, KOL &amp; Affiliate Recruitment</span></div>
+      <div class="expertise-item reveal d4"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Administrative &amp; Marketing Support</span></div>
+      <div class="expertise-item reveal d5"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Social Media Management</span></div>
+      <div class="expertise-item reveal d6"><div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L19 7"/></svg></div><span class="label">Content Creation</span></div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ 06 TOOLS ═══ -->
+<div class="band" id="tools">
+  <p class="band-tag reveal">06 — Toolkit</p>
+  <h2 class="band-title reveal">Tools</h2>
+  <p class="band-sub reveal">These are the tools I rely on every day to design, create, collaborate, and manage projects efficiently. From Adobe Creative Suite and Canva to marketing platforms and project management software, each tool plays a role in delivering high-quality work with consistency and precision. I continuously learn and adapt to new platforms so I can offer the most effective solutions for every client and project.</p>
+</div>
+<div class="wrap">
+  <section class="section">
+    <div class="tools-grid" id="toolsGrid"></div>
+  </section>
+</div>
+
+<!-- ═══ 07 CONTACT ═══ -->
+<div class="band" id="contact-page">
+  <p class="band-tag reveal">07 — Get in Touch</p>
+  <h2 class="band-title reveal">Let's Work Together</h2>
+  <p class="band-sub reveal">Have a project in mind? Let's talk about how I can help.</p>
+</div>
+<div class="wrap">
+  <section class="section">
+    <div class="contact-single">
+      <div class="contact-card reveal d1">
+        <div class="contact-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6L12 13 2 6"/><path d="M2 6h20v12H2z"/></svg></div>
+        <div><div class="contact-label">Email</div><div class="contact-value">leoadambalingit@gmail.com</div></div>
+      </div>
+      <a class="contact-card whatsapp reveal d2" href="https://wa.me/639673875905" target="_blank" rel="noopener" aria-label="Message on WhatsApp">
+        <div class="contact-icon"><svg width="24" height="24" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.04 3C8.86 3 3.03 8.82 3.03 15.98c0 2.29.6 4.53 1.73 6.49L3 29l6.7-1.75a13 13 0 0 0 6.34 1.61h.01c7.17 0 13-5.82 13-12.98C29.05 8.82 23.22 3 16.04 3zm0 23.66h-.01a10.78 10.78 0 0 1-5.49-1.5l-.39-.23-3.97 1.04 1.06-3.87-.25-.4a10.7 10.7 0 0 1-1.64-5.72c0-5.94 4.85-10.77 10.81-10.77 2.89 0 5.6 1.12 7.64 3.16a10.7 10.7 0 0 1 3.17 7.61c0 5.94-4.85 10.78-10.93 10.78zm5.93-8.07c-.32-.16-1.91-.94-2.21-1.05-.3-.11-.52-.16-.74.16-.22.32-.85 1.05-1.04 1.27-.19.22-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.59-.96-.85-1.6-1.9-1.79-2.22-.19-.32-.02-.5.14-.66.14-.14.32-.38.48-.57.16-.19.22-.32.32-.54.11-.22.05-.41-.03-.57-.08-.16-.74-1.78-1.01-2.44-.27-.64-.54-.55-.74-.56h-.63c-.22 0-.57.08-.87.41-.3.32-1.14 1.11-1.14 2.7s1.17 3.14 1.33 3.36c.16.22 2.3 3.51 5.57 4.92.78.34 1.39.54 1.86.69.78.25 1.49.21 2.05.13.63-.09 1.91-.78 2.18-1.54.27-.76.27-1.41.19-1.54-.08-.14-.3-.22-.62-.38z"/></svg></div>
+        <div><div class="contact-label">WhatsApp</div><div class="contact-value">+63 967 387 5905</div></div>
+      </a>
+    </div>
+    <form class="contact-form reveal d2" id="contactForm">
+      <div class="form-row">
+        <div class="form-field"><label>Name</label><input type="text" id="cf-name" placeholder="Your full name" required/></div>
+        <div class="form-field"><label>Email</label><input type="email" id="cf-email" placeholder="you@email.com" required/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field full"><label>Subject</label><input type="text" id="cf-subject" placeholder="What's this about?"/></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field full"><label>Message</label><textarea rows="5" id="cf-message" placeholder="Tell me about your project..." required></textarea></div>
+      </div>
+      <button class="form-submit" type="submit">EMAIL ME →</button>
+    </form>
+  </section>
+</div>
+
+<footer>
+  <div class="foot-name" style="display:flex;align-items:center;gap:8px;">
+    <img src="My%20Logo/My%20Logo/My%20Logo.png" alt="Leo Adam Balingit logo" style="width:24px;height:24px;object-fit:contain;" loading="lazy" decoding="async"/>
+    Leo Adam Balingit
+  </div>
+  <div class="foot-links">
+    <a href="https://wa.me/639673875905" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="http://linkedin.com/in/leo-adam-balingit-0b4428217/tl?originalSubdomain=ph" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+  <div class="foot-meta">© 2026</div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ─────────────────────────────────────────
+     LAZY IMAGE FADE-IN: marks images as loaded
+     so skeleton shimmer disappears smoothly
+  ───────────────────────────────────────── */
+  function onImgLoad(img){
+    if(img.complete && img.naturalWidth > 0){
+      img.classList.add('loaded');
+    } else {
+      img.addEventListener('load', () => img.classList.add('loaded'), {once:true});
+      img.addEventListener('error', () => img.classList.add('loaded'), {once:true});
+    }
+  }
+
+  /* ─────────────────────────────────────────
+     CONTACT FORM → MAILTO
+  ───────────────────────────────────────── */
+  const contactForm = document.getElementById('contactForm');
+  if(contactForm){
+    contactForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const name    = document.getElementById('cf-name').value.trim();
+      const email   = document.getElementById('cf-email').value.trim();
+      const subject = document.getElementById('cf-subject').value.trim() || 'New project inquiry';
+      const message = document.getElementById('cf-message').value.trim();
+      const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+      window.location.href = `mailto:saturog350@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  }
+
+  /* ─────────────────────────────────────────
+     INSTAGRAM CARD SVG ICONS
+  ───────────────────────────────────────── */
+  const IG_LOGO_SVG  = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="#262626" stroke-width="1.6"/><circle cx="12" cy="12" r="4.2" stroke="#262626" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="#262626"/></svg>`;
+  const HEART_SVG    = `<svg class="ig-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
+  const COMMENT_SVG  = `<svg class="ig-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`;
+  const SEND_SVG     = `<svg class="ig-action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
+  const SAVE_SVG     = `<svg class="ig-action-icon save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>`;
+
+  /* ─────────────────────────────────────────
+     BUILD INSTAGRAM CARD with lazy loading
+  ───────────────────────────────────────── */
+  function createIgCard(opts){
+    const { src, name, href, username, caption, tall, fullPage, landscape } = opts;
+    const card = document.createElement('a');
+    card.className = 'ig-card reveal';
+    card.href = href || src;
+    card.target = '_blank';
+    card.rel = 'noopener';
+    card.setAttribute('aria-label', `Open ${name}`);
+
+    const header = document.createElement('div');
+    header.className = 'ig-header';
+    const logoWrap = document.createElement('div');
+    logoWrap.className = 'ig-logo';
+    logoWrap.innerHTML = IG_LOGO_SVG;
+    const uname = document.createElement('span');
+    uname.className = 'ig-username';
+    uname.textContent = username || 'leoadambalingit';
+    const dots = document.createElement('div');
+    dots.className = 'ig-dots';
+    dots.innerHTML = '<span></span><span></span><span></span>';
+    header.append(logoWrap, uname, dots);
+
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'ig-image-wrap'
+      + (tall     ? ' ig-tall'     : '')
+      + (fullPage ? ' ig-fullpage' : '')
+      + (landscape? ' ig-landscape': '');
+
+    const img = document.createElement('img');
+    img.alt = name;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    /* Use data-src; real src set by IntersectionObserver below */
+    img.dataset.src = src;
+    imgWrap.appendChild(img);
+
+    const actions = document.createElement('div');
+    actions.className = 'ig-actions';
+    const left = document.createElement('div');
+    left.className = 'ig-action-left';
+    left.innerHTML = HEART_SVG + COMMENT_SVG + SEND_SVG;
+    actions.append(left);
+    actions.innerHTML += SAVE_SVG;
+
+    const cap = document.createElement('div');
+    cap.className = 'ig-caption';
+    const capUser = document.createElement('span');
+    capUser.className = 'ig-caption-user';
+    capUser.textContent = username || 'leoadambalingit';
+    const capText = document.createElement('span');
+    capText.className = 'ig-caption-text';
+    capText.textContent = ' ' + (caption || name);
+    cap.append(capUser, capText);
+
+    card.append(header, imgWrap, actions, cap);
+    return card;
+  }
+
+  /* ─────────────────────────────────────────
+     STANDARD ASSET CARD with lazy loading
+  ───────────────────────────────────────── */
+  const revealDelays = ['d1','d2','d3','d4','d5','d6'];
+
+  function createAssetCard(item, type, index){
+    const [name, src, kind, placeholder] = item;
+    const card = document.createElement('a');
+    card.className = `asset-card reveal ${revealDelays[index % revealDelays.length]}`;
+    card.href = src;
+    card.target = '_blank';
+    card.rel = 'noopener';
+    card.setAttribute('aria-label', `Open ${name}`);
+    const thumb = document.createElement('div');
+    thumb.className = kind === 'pdf' ? 'asset-thumb asset-doc' : 'asset-thumb';
+    if(kind === 'pdf' && !placeholder){
+      thumb.textContent = 'PDF';
+    } else {
+      const img = document.createElement('img');
+      img.alt = name;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.dataset.src = placeholder || src;
+      thumb.appendChild(img);
+    }
+    const info = document.createElement('div');
+    info.className = 'asset-info';
+    const title = document.createElement('div');
+    title.className = 'asset-name';
+    title.textContent = name;
+    const label = document.createElement('div');
+    label.className = 'asset-type';
+    label.textContent = type;
+    info.append(title, label);
+    card.append(thumb, info);
+    return card;
+  }
+
+  /* ─────────────────────────────────────────
+     DATA
+  ───────────────────────────────────────── */
+  const portfolioGroups = [
+    { id:'brandingAssets', type:'Brand Guidelines', mode:'standard', items:[
+      ['BetAlly Brand Guide','Brand Guides/BetAlly Brand Guide.pdf','pdf','betAlly.png'],
+      ['OLE777 Brand Guide','Brand Guides/OLE777 Brand Guide.pdf','pdf','ole777.png'],
+      ['Olimpic Brand Guide','olimpic.jpg','image']
+    ]},
+    { id:'packagingAssets', type:'Package / Merch', mode:'standard', items:[
+      ['Butterfly Skin Product Packaging','Product Packaging/Butterfly Skin product packaging.png','image'],
+      ['Cup & Go Product Packaging','Product Packaging/Cup & Go product packaging.png','image'],
+      ['Eleve Wellness Product Packaging','Product Packaging/Eleve Wellness product packaging.png','image'],
+      ['Fork Product Packaging','Product Packaging/fork product packaging.png','image'],
+      ['Nature Cosmetic','Product Packaging/nature cosmetic.png','image'],
+      ['Unwind Product Packaging','Product Packaging/Unwind product packaging.png','image'],
+      ['Veraluxe Product Packaging','Product Packaging/veraluxe product packaging.png','image'],
+      ['BetAlly All Giveaways','Product Packaging/BetAlly/BetAlly All Giveaways.png','image'],
+      ['BetAlly Shirt 1','Product Packaging/BetAlly/BetAlly Shirt 1.jpg','image'],
+      ['BetAlly Shirt 2','Product Packaging/BetAlly/BetAlly Shirt 2.jpg','image'],
+      ['BetAlly Shirt 3','Product Packaging/BetAlly/BetAlly Shirt 3.jpg','image'],
+      ['BetAlly Merch Set A','Product Packaging/BetAlly/magnific_change-the-color-of-cap-t_CHza1OMEEy.png','image'],
+      ['BetAlly Merch Set B','Product Packaging/BetAlly/magnific_create-a-highquality-prem_LUodHbaswO.png','image'],
+      ['BetAlly Merch Set C','Product Packaging/BetAlly/magnific_create-a-premium-professi_WMlzYWJcXe.png','image']
+    ]},
+    { id:'boothAssets', type:'Booth Design', mode:'instagram', username:'leoadambalingit', items:[
+      ['January 5','Booth Designs/Entry Level 2 Mock Up.png'],
+      ['January 7','Booth Designs/Mid Level Mock Up 1.png'],
+      ['January 10','Booth Designs/Mid Level Mockup 2.png'],
+      ['January 12','Booth Designs/Top Level Mock Up 1.png'],
+      ['January 15','Booth Designs/Top Level Mock Up 2.png']
+    ]},
+    { id:'emailAssets', type:'Email Design', mode:'instagram', landscape:true, username:'leoadambalingit', items:[
+      ['','Cle777design.jpg']
+    ]},
+    { id:'websiteAssets', type:'Website Design', mode:'instagram', fullPage:true, username:'leoadambalingit', items:[
+      ['','Website Design/Elementor Homepage.png']
+    ]},
+    { id:'flyerAssets', type:'Flyer', mode:'standard', items:[
+      ['BetAlly Flyer 1','Flyers/BetAlly Flyer 1.png','image'],
+      ['BetAlly Flyer 2','Flyers/BetAlly Flyer 2.png','image']
+    ]},
+    { id:'socialPostAssets', type:'Social Media Post', mode:'instagram', username:'leoadambalingit', items:[
+      ['April 1','Social Media Posts/April 1.png'],['April 3','Social Media Posts/April 3.png'],
+      ['April 8','Social Media Posts/April 8.png'],['April 10','Social Media Posts/April 10.png'],
+      ['April 14','Social Media Posts/April 14.png'],['April 16','Social Media Posts/April 16.png'],
+      ['April 18','Social Media Posts/April 18.png'],['April 22','Social Media Posts/April 22.png'],
+      ['April 24','Social Media Posts/April 24.png'],['April 28','Social Media Posts/April 28.png'],
+      ['April 30','Social Media Posts/April 30.png'],['March 3','Social Media Posts/March 3.png'],
+      ['March 4','Social Media Posts/March 4.png'],['March 5','Social Media Posts/March 5.png'],
+      ['March 5','Social Media Posts/March 5 Repost.png'],['March 7','Social Media Posts/March 7.png'],
+      ['March 7','Social Media Posts/March 7 Repost.png'],['March 10','Social Media Posts/March 10.png'],
+      ['March 10','Social Media Posts/March 10 New.png'],['March 12','Social Media Posts/March 12.png'],
+      ['March 12','Social Media Posts/March 12 New.png'],['March 14','Social Media Posts/March 14 New.png'],
+      ['March 17','Social Media Posts/March 17.png'],['March 19','Social Media Posts/March 19.png'],
+      ['March 21','Social Media Posts/March 21.png'],['March 24','Social Media Posts/March 24.png'],
+      ['March 26','Social Media Posts/March 26.png'],['March 28','Social Media Posts/March 28.png'],
+      ['March 31','Social Media Posts/March 31.png'],['April 10','Social Media Posts/Message 1.2.png'],
+      ['June 2','Social Media Posts/Message 2.png'],['June 3','Social Media Posts/Message 3.png'],
+      ['June 4','Social Media Posts/Message 4.png'],['June 5','Social Media Posts/Message 5.png'],
+      ['July 6','Social Media Posts/Message 6.png'],['July 7','Social Media Posts/Message 7.png'],
+      ['July 8','Social Media Posts/Message 8.png'],['July 9','Social Media Posts/Message 9.png'],
+      ['July 10','Social Media Posts/Message 10.png']
+    ]}
+  ];
+
+  portfolioGroups.forEach(group => {
+    const grid = document.getElementById(group.id);
+    if(!grid) return;
+    if(group.mode === 'instagram'){
+      const cards = group.items.map((item, i) => {
+        const [name, src] = item;
+        const card = createIgCard({
+          src, name, href: src,
+          username: group.username || 'leoadambalingit',
+          caption: name,
+          tall: group.tall || false,
+          fullPage: group.fullPage || false,
+          landscape: group.landscape || false
+        });
+        card.classList.add(revealDelays[i % revealDelays.length]);
+        return card;
+      });
+      grid.replaceChildren(...cards);
+    } else {
+      grid.replaceChildren(...group.items.map((item, index) => createAssetCard(item, group.type, index)));
+    }
+  });
+
+  /* ─────────────────────────────────────────
+     DIGITAL ADS CAROUSEL
+  ───────────────────────────────────────── */
+  const digitalAdBlueItems = [
+    ['August 22','Digital Ads/Carousel Ads/Design 2/1.jpg'],
+    ['September 3','Digital Ads/Carousel Ads/Design 2/2.png'],
+    ['September 5','Digital Ads/Carousel Ads/Design 2/3.png'],
+    ['September 8','Digital Ads/Carousel Ads/Design 2/4.png'],
+    ['September 16','Digital Ads/Carousel Ads/Design 2/5.png']
+  ];
+  const digitalAdGreenItems = [
+    ['August 7','Digital Ads/Carousel Ads/Design 1/1.png'],
+    ['August 9','Digital Ads/Carousel Ads/Design 1/2.png'],
+    ['August 14','Digital Ads/Carousel Ads/Design 1/3.png'],
+    ['August 18','Digital Ads/Carousel Ads/Design 1/4.png'],
+    ['August 20','Digital Ads/Carousel Ads/Design 1/5.png']
+  ];
+
+  function buildAdsMarquee(trackId, items){
+    const track = document.getElementById(trackId);
+    if(!track) return;
+    const cards = [...items, ...items].map(([name, src], index) => {
+      const card = createIgCard({ src, name, href: src, username: 'leoadambalingit', caption: name });
+      card.classList.remove('reveal');
+      if(index >= items.length) card.setAttribute('aria-hidden','true');
+      return card;
+    });
+    track.replaceChildren(...cards);
+  }
+  buildAdsMarquee('adsTrackBlue',  digitalAdBlueItems);
+  buildAdsMarquee('adsTrackGreen', digitalAdGreenItems);
+
+  /* ─────────────────────────────────────────
+     TOOLS GRID
+  ───────────────────────────────────────── */
+  const ICON_CDN = 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons';
+  const tools = [
+    { name:'Adobe Photoshop', icon:`${ICON_CDN}/adobephotoshop.svg` },
+    { name:'Canva',           icon:`${ICON_CDN}/canva.svg` },
+    { name:'Capcut',          icon:'https://www.google.com/s2/favicons?domain=capcut.com&sz=64' },
+    { name:'Filmora',         icon:'https://www.google.com/s2/favicons?domain=filmora.wondershare.com&sz=64' },
+    { name:'Freepik',         icon:`${ICON_CDN}/freepik.svg` },
+    { name:'Google Veo',      icon:`${ICON_CDN}/google.svg` },
+    { name:'Elementor',       icon:`${ICON_CDN}/elementor.svg` },
+    { name:'Frame.io',        icon:'https://www.google.com/s2/favicons?domain=frame.io&sz=64' },
+    { name:'Figma',           icon:`${ICON_CDN}/figma.svg` },
+    { name:'Opusclip',        icon:'https://www.google.com/s2/favicons?domain=opus.pro&sz=64' },
+    { name:'Semrush',         icon:`${ICON_CDN}/semrush.svg` },
+    { name:'Reachout.Ai',     icon:'https://www.google.com/s2/favicons?domain=reachout.ai&sz=64' },
+    { name:'Envato',          icon:`${ICON_CDN}/envato.svg` },
+    { name:'Adobe Firefly',   icon:'https://www.google.com/s2/favicons?domain=firefly.adobe.com&sz=64' },
+    { name:'Vercel',          icon:`${ICON_CDN}/vercel.svg` },
+    { name:'Magnific',        icon:'https://www.google.com/s2/favicons?domain=magnific.ai&sz=64' },
+    { name:'Phantombuster',   icon:'https://www.google.com/s2/favicons?domain=phantombuster.com&sz=64' },
+    { name:'Quickmail',       icon:'https://www.google.com/s2/favicons?domain=quickmail.io&sz=64' },
+    { name:'Instantly',       icon:'https://www.google.com/s2/favicons?domain=instantly.ai&sz=64' },
+    { name:'Sales Navigator', icon:`${ICON_CDN}/linkedin.svg` },
+    { name:'Lastpass',        icon:`${ICON_CDN}/lastpass.svg` },
+    { name:'Wix',             icon:`${ICON_CDN}/wix.svg` },
+    { name:'Dropbox',         icon:`${ICON_CDN}/dropbox.svg` },
+    { name:'Onedrive',        icon:`${ICON_CDN}/microsoftonedrive.svg` },
+    { name:'Expandi.io',      icon:'https://www.google.com/s2/favicons?domain=expandi.io&sz=64' },
+    { name:'Slack',           icon:`${ICON_CDN}/slack.svg` },
+    { name:'Dingtalk',        icon:'https://www.google.com/s2/favicons?domain=dingtalk.com&sz=64' },
+    { name:'Yamdu',           icon:'https://www.google.com/s2/favicons?domain=yamdu.com&sz=64' },
+    { name:'Publer',          icon:'https://www.google.com/s2/favicons?domain=publer.io&sz=64' },
+    { name:'ChatGPT',         icon:`${ICON_CDN}/openai.svg` },
+    { name:'Typeform',        icon:`${ICON_CDN}/typeform.svg` },
+    { name:'Calendly',        icon:`${ICON_CDN}/calendly.svg` },
+    { name:'Meta Ads',        icon:`${ICON_CDN}/meta.svg` },
+    { name:'Google Ads',      icon:`${ICON_CDN}/googleads.svg` },
+    { name:'Wordstream',      icon:'https://www.google.com/s2/favicons?domain=wordstream.com&sz=64' },
+    { name:'Buffer',          icon:`${ICON_CDN}/buffer.svg` },
+    { name:'Veed.io',         icon:'https://www.google.com/s2/favicons?domain=veed.io&sz=64' }
+  ];
+  const delays = ['d1','d2','d3','d4','d5'];
+  const toolsGrid = document.getElementById('toolsGrid');
+
+  function toolLogoFallback(name){
+    const span = document.createElement('span');
+    span.className = 'tool-logo-fallback';
+    span.textContent = name.charAt(0);
+    return span;
+  }
+  function createToolLogo(tool){
+    const wrap = document.createElement('div');
+    wrap.className = 'tool-logo';
+    const img = document.createElement('img');
+    img.alt = '';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.src = tool.icon; /* tool icons are tiny — load normally */
+    img.onerror = () => wrap.replaceChildren(toolLogoFallback(tool.name));
+    wrap.appendChild(img);
+    return wrap;
+  }
+  if(toolsGrid){
+    tools.forEach((tool, i) => {
+      const item = document.createElement('div');
+      item.className = `tool-item reveal ${delays[Math.min(Math.floor(i / 8), 4)]}`;
+      item.appendChild(createToolLogo(tool));
+      item.appendChild(document.createTextNode(tool.name));
+      toolsGrid.appendChild(item);
+    });
+  }
+
+  /* ─────────────────────────────────────────
+     LOADER — hide once page resources ready
+  ───────────────────────────────────────── */
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1400);
+  });
+
+  /* ─────────────────────────────────────────
+     NAV SCROLL + ACTIVE SECTION
+  ───────────────────────────────────────── */
+  const navbar      = document.getElementById('navbar');
+  const navSections = document.querySelectorAll('#clients-brands,#brands,#graphic-design,#social-media,#content-creation,#expertise,#tools,#contact-page');
+  const navLinks    = document.querySelectorAll('.nav-links a[href^="#"],.mlink[href^="#"]');
+
+  function setActiveNav(id){
+    navLinks.forEach(link => {
+      const active = link.getAttribute('href') === `#${id}`;
+      link.classList.toggle('active', active);
+      active ? link.setAttribute('aria-current','true') : link.removeAttribute('aria-current');
+    });
+  }
+  function updateActiveNav(){
+    const offset = navbar.offsetHeight + 120;
+    let current = navSections[0]?.id || '';
+    navSections.forEach(s => { if(window.scrollY >= s.offsetTop - offset) current = s.id; });
+    if(window.scrollY < (navSections[0]?.offsetTop - offset || 0)) current = '';
+    setActiveNav(current);
+  }
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+    updateActiveNav();
+  }, {passive:true});
+  updateActiveNav();
+  navLinks.forEach(link => link.addEventListener('click', () => setActiveNav(link.getAttribute('href').slice(1))));
+
+  /* ─────────────────────────────────────────
+     HAMBURGER
+  ───────────────────────────────────────── */
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mlink').forEach(l => l.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }));
+  document.addEventListener('click', e => {
+    if(!hamburger.contains(e.target) && !mobileMenu.contains(e.target)){
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+  });
+
+  /* ─────────────────────────────────────────
+     HERO CURSOR GLOW
+  ───────────────────────────────────────── */
+  const heroSection = document.querySelector('.hero');
+  const glow        = document.getElementById('heroGlow');
+  if(heroSection && glow && window.matchMedia('(min-width:681px)').matches){
+    heroSection.addEventListener('mousemove', e => {
+      const rect = heroSection.getBoundingClientRect();
+      glow.style.transform = `translate(${e.clientX - rect.left}px,${e.clientY - rect.top}px) translate(-50%,-50%)`;
+    });
+  }
+
+  /* ─────────────────────────────────────────
+     UNIFIED INTERSECTION OBSERVER
+     Handles: reveal animations + lazy img src
+  ───────────────────────────────────────── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      const el = entry.target;
+
+      /* Reveal animation */
+      if(el.classList.contains('reveal') || el.classList.contains('reveal-left') ||
+         el.classList.contains('reveal-right') || el.classList.contains('reveal-scale')){
+        el.classList.add('visible');
+      }
+
+      /* Lazy image: swap data-src → src */
+      if(el.tagName === 'IMG' && el.dataset.src){
+        el.src = el.dataset.src;
+        delete el.dataset.src;
+        onImgLoad(el);
+      }
+
+      io.unobserve(el);
+    });
+  }, {threshold:0.05, rootMargin:'0px 0px 200px 0px'});
+
+  /* Observe reveal elements */
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el => io.observe(el));
+
+  /* Observe lazy images (data-src set by JS card builders above) */
+  /* We use a MutationObserver to catch dynamically added imgs */
+  const imgObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      const img = entry.target;
+      if(img.dataset.src){
+        img.src = img.dataset.src;
+        delete img.dataset.src;
+        onImgLoad(img);
+      }
+      imgObserver.unobserve(img);
+    });
+  }, {threshold:0, rootMargin:'0px 0px 300px 0px'});
+
+  function observeNewImages(root){
+    root.querySelectorAll('img[data-src]').forEach(img => imgObserver.observe(img));
+  }
+
+  /* Observe images already in DOM */
+  observeNewImages(document);
+
+  /* Watch for newly injected images (from card builders) */
+  const mutObs = new MutationObserver(mutations => {
+    mutations.forEach(m => m.addedNodes.forEach(node => {
+      if(node.nodeType !== 1) return;
+      if(node.tagName === 'IMG' && node.dataset.src) imgObserver.observe(node);
+      else observeNewImages(node);
+    }));
+  });
+  mutObs.observe(document.body, {childList:true, subtree:true});
+
+  /* Also observe existing static imgs (portrait, toc, client logos) */
+  document.querySelectorAll('img:not([data-src])').forEach(img => onImgLoad(img));
+
+  /* ─────────────────────────────────────────
+     COUNTER ANIMATION
+  ───────────────────────────────────────── */
+  function animateCounter(el){
+    const target    = parseFloat(el.dataset.target);
+    const isDecimal = el.dataset.decimal === 'true';
+    const duration  = 1600;
+    const start     = performance.now();
+    function step(now){
+      const t   = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - t, 3);
+      el.textContent = isDecimal ? (target * ease).toFixed(1) : Math.floor(target * ease);
+      if(t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const counterIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      animateCounter(e.target);
+      counterIO.unobserve(e.target);
+    });
+  }, {threshold:0.4});
+  document.querySelectorAll('.counter-num[data-target]').forEach(el => counterIO.observe(el));
+
+})();
+</script>
+</body>
+</html>
