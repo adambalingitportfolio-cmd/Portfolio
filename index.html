@@ -373,6 +373,60 @@ hr.rule{border:none;border-top:1px solid var(--line)}
 .process-step .p-title{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:-0.01em;margin-bottom:.25rem;color:var(--ink)}
 .process-step .p-desc{font-size:11.5px;color:var(--ink3);line-height:1.5}
 
+/* ─────────────────────────────────────────
+   VIDEO THUMBNAIL / PLAY BUTTON OVERLAY
+───────────────────────────────────────── */
+/* Canvas-generated poster that sits behind the native video */
+.video-thumb-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+/* Play button circle */
+.video-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.93);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity .25s, transform .25s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.28);
+}
+.video-play-btn svg {
+  width: 22px;
+  height: 22px;
+  color: var(--clay-d);
+  margin-left: 3px; /* optical center for triangle */
+}
+/* Hide overlay once video is playing */
+.video-frame.is-playing .video-thumb-canvas,
+.video-frame.is-playing .video-play-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+/* Hover lift on play button */
+.video-card:hover .video-play-btn {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: rgba(255,255,255,1);
+}
+/* Hide the canvas once poster is loaded (native poster takes over) */
+.video-frame.poster-ready .video-thumb-canvas {
+  display: none;
+}
+
 /* ── TICKER ── */
 .ticker-wrap{background:var(--surface);overflow:hidden;height:42px;display:flex;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);width:100%}
 .ticker-track{display:flex;gap:0;white-space:nowrap;animation:ticker 26s linear infinite;will-change:transform}
@@ -924,23 +978,83 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
       <p class="video-copy reveal d2">Short-form edits and a long-form vlog sample, arranged as one clean video portfolio section.</p>
     </div>
     <div class="video-grid video-reels">
+
+      <!-- REEL 1 -->
       <div class="video-card reveal d1">
-        <div class="video-frame"><span class="video-pill">Reel</span><video src="Videos/Wall%20Decors.h264.mp4#t=0.1" controls muted playsinline preload="none"></video></div>
+        <div class="video-frame" id="vf-wall">
+          <span class="video-pill">Reel</span>
+          <video
+            src="Videos/Wall%20Decors.h264.mp4"
+            preload="metadata"
+            muted
+            playsinline
+            id="vid-wall"
+          ></video>
+          <!-- Play button overlay -->
+          <div class="video-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
         <div class="video-info"><div class="video-name">Wall Decors</div><div class="video-type">Reel / Video Editing</div></div>
       </div>
+
+      <!-- REEL 2 -->
       <div class="video-card reveal d2">
-        <div class="video-frame"><span class="video-pill">Reel</span><video src="Videos/Portraits.h264.mp4#t=0.1" controls muted playsinline preload="none"></video></div>
+        <div class="video-frame" id="vf-portraits">
+          <span class="video-pill">Reel</span>
+          <video
+            src="Videos/Portraits.h264.mp4"
+            preload="metadata"
+            muted
+            playsinline
+            id="vid-portraits"
+          ></video>
+          <div class="video-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
         <div class="video-info"><div class="video-name">Portraits</div><div class="video-type">Reel / Video Editing</div></div>
       </div>
+
+      <!-- REEL 3 -->
       <div class="video-card reveal d3">
-        <div class="video-frame"><span class="video-pill">Reel</span><video src="Videos/Kid%20Books.h264.mp4#t=0.1" controls muted playsinline preload="none"></video></div>
+        <div class="video-frame" id="vf-kidbooks">
+          <span class="video-pill">Reel</span>
+          <video
+            src="Videos/Kid%20Books.h264.mp4"
+            preload="metadata"
+            muted
+            playsinline
+            id="vid-kidbooks"
+          ></video>
+          <div class="video-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
         <div class="video-info"><div class="video-name">Kid Books</div><div class="video-type">Reel / Video Editing</div></div>
       </div>
+
+      <!-- REEL 4 -->
       <div class="video-card reveal d4">
-        <div class="video-frame"><span class="video-pill">Reel</span><video src="Videos/iGaming.mp4#t=0.1" controls muted playsinline preload="none"></video></div>
+        <div class="video-frame" id="vf-igaming">
+          <span class="video-pill">Reel</span>
+          <video
+            src="Videos/iGaming.mp4"
+            preload="metadata"
+            muted
+            playsinline
+            id="vid-igaming"
+          ></video>
+          <div class="video-play-btn" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+        </div>
         <div class="video-info"><div class="video-name">iGaming</div><div class="video-type">Reel / Video Editing</div></div>
       </div>
+
     </div>
+
+    <!-- VLOG FEATURE -->
     <div class="video-feature reveal d2">
       <div class="video-feature-copy">
         <div class="video-eyebrow">04b &mdash; Long-form edit</div>
@@ -955,6 +1069,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
         <div class="video-info"><div class="video-name">Japan Vlog Part 1</div><div class="video-type">YouTube / Long-form Edit</div></div>
       </div>
     </div>
+
     <div class="process-row reveal">
       <div class="process-step"><div class="p-num">Step 01</div><div class="p-title">Plan</div><div class="p-desc">Concept, references &amp; content direction</div></div>
       <div class="process-step"><div class="p-num">Step 02</div><div class="p-title">Edit</div><div class="p-desc">Pacing, sequencing &amp; story structure</div></div>
@@ -1059,17 +1174,97 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
   'use strict';
 
   /* ─────────────────────────────────────────
-     LAZY IMAGE FADE-IN: marks images as loaded
-     so skeleton shimmer disappears smoothly
+     LAZY IMAGE FADE-IN
   ───────────────────────────────────────── */
   function onImgLoad(img){
     if(img.complete && img.naturalWidth > 0){
       img.classList.add('loaded');
     } else {
-      img.addEventListener('load', () => img.classList.add('loaded'), {once:true});
+      img.addEventListener('load',  () => img.classList.add('loaded'), {once:true});
       img.addEventListener('error', () => img.classList.add('loaded'), {once:true});
     }
   }
+
+  /* ─────────────────────────────────────────
+     VIDEO THUMBNAIL: draw first frame via
+     canvas once metadata is loaded, then
+     show the play button overlay.
+     Clicking anywhere on the frame plays/pauses.
+  ───────────────────────────────────────── */
+  function initVideoThumbnail(videoEl, frameEl){
+    if(!videoEl || !frameEl) return;
+
+    // Draw first frame to canvas as soon as metadata arrives
+    function drawPoster(){
+      try {
+        const canvas  = document.createElement('canvas');
+        canvas.width  = videoEl.videoWidth  || 360;
+        canvas.height = videoEl.videoHeight || 640;
+        canvas.className = 'video-thumb-canvas';
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(videoEl, 0, 0, canvas.width, canvas.height);
+        // Only add if frame has actual pixels
+        const data = ctx.getImageData(0, 0, 1, 1).data;
+        if(data[3] > 0){
+          frameEl.insertBefore(canvas, frameEl.querySelector('.video-play-btn'));
+        }
+      } catch(e){ /* cross-origin guard */ }
+    }
+
+    if(videoEl.readyState >= 1){
+      // Metadata already loaded — seek to frame 0.1s for thumbnail
+      videoEl.currentTime = 0.1;
+    } else {
+      videoEl.addEventListener('loadedmetadata', () => {
+        videoEl.currentTime = 0.1;
+      }, {once:true});
+    }
+
+    videoEl.addEventListener('seeked', function onSeeked(){
+      drawPoster();
+      videoEl.removeEventListener('seeked', onSeeked);
+    });
+
+    // Click to play / pause — hides overlay when playing
+    frameEl.addEventListener('click', () => {
+      if(videoEl.paused){
+        // Pause all other reel videos first
+        document.querySelectorAll('.video-frame video').forEach(v => {
+          if(v !== videoEl && !v.paused){
+            v.pause();
+            v.closest('.video-frame')?.classList.remove('is-playing');
+          }
+        });
+        videoEl.currentTime = 0; // restart from beginning
+        videoEl.play().then(() => {
+          frameEl.classList.add('is-playing');
+        }).catch(() => {});
+      } else {
+        videoEl.pause();
+        frameEl.classList.remove('is-playing');
+      }
+    });
+
+    // When video ends, bring back the overlay
+    videoEl.addEventListener('ended', () => {
+      frameEl.classList.remove('is-playing');
+      // Redraw poster at end frame
+      videoEl.currentTime = 0.1;
+    });
+  }
+
+  // Initialise all four reels
+  [
+    ['vid-wall',     'vf-wall'],
+    ['vid-portraits','vf-portraits'],
+    ['vid-kidbooks', 'vf-kidbooks'],
+    ['vid-igaming',  'vf-igaming']
+  ].forEach(([vId, fId]) => {
+    initVideoThumbnail(
+      document.getElementById(vId),
+      document.getElementById(fId)
+    );
+  });
 
   /* ─────────────────────────────────────────
      CONTACT FORM → MAILTO
@@ -1097,7 +1292,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
   const SAVE_SVG     = `<svg class="ig-action-icon save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>`;
 
   /* ─────────────────────────────────────────
-     BUILD INSTAGRAM CARD with lazy loading
+     BUILD INSTAGRAM CARD
   ───────────────────────────────────────── */
   function createIgCard(opts){
     const { src, name, href, username, caption, tall, fullPage, landscape } = opts;
@@ -1123,15 +1318,14 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
 
     const imgWrap = document.createElement('div');
     imgWrap.className = 'ig-image-wrap'
-      + (tall     ? ' ig-tall'     : '')
-      + (fullPage ? ' ig-fullpage' : '')
-      + (landscape? ' ig-landscape': '');
+      + (tall      ? ' ig-tall'     : '')
+      + (fullPage  ? ' ig-fullpage' : '')
+      + (landscape ? ' ig-landscape': '');
 
     const img = document.createElement('img');
     img.alt = name;
     img.loading = 'lazy';
     img.decoding = 'async';
-    /* Use data-src; real src set by IntersectionObserver below */
     img.dataset.src = src;
     imgWrap.appendChild(img);
 
@@ -1158,7 +1352,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
   }
 
   /* ─────────────────────────────────────────
-     STANDARD ASSET CARD with lazy loading
+     STANDARD ASSET CARD
   ───────────────────────────────────────── */
   const revealDelays = ['d1','d2','d3','d4','d5','d6'];
 
@@ -1375,7 +1569,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
     img.alt = '';
     img.loading = 'lazy';
     img.decoding = 'async';
-    img.src = tool.icon; /* tool icons are tiny — load normally */
+    img.src = tool.icon;
     img.onerror = () => wrap.replaceChildren(toolLogoFallback(tool.name));
     wrap.appendChild(img);
     return wrap;
@@ -1391,7 +1585,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
   }
 
   /* ─────────────────────────────────────────
-     LOADER — hide once page resources ready
+     LOADER
   ───────────────────────────────────────── */
   window.addEventListener('load', () => {
     setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1400);
@@ -1459,35 +1653,26 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
 
   /* ─────────────────────────────────────────
      UNIFIED INTERSECTION OBSERVER
-     Handles: reveal animations + lazy img src
   ───────────────────────────────────────── */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(!entry.isIntersecting) return;
       const el = entry.target;
-
-      /* Reveal animation */
       if(el.classList.contains('reveal') || el.classList.contains('reveal-left') ||
          el.classList.contains('reveal-right') || el.classList.contains('reveal-scale')){
         el.classList.add('visible');
       }
-
-      /* Lazy image: swap data-src → src */
       if(el.tagName === 'IMG' && el.dataset.src){
         el.src = el.dataset.src;
         delete el.dataset.src;
         onImgLoad(el);
       }
-
       io.unobserve(el);
     });
   }, {threshold:0.05, rootMargin:'0px 0px 200px 0px'});
 
-  /* Observe reveal elements */
   document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el => io.observe(el));
 
-  /* Observe lazy images (data-src set by JS card builders above) */
-  /* We use a MutationObserver to catch dynamically added imgs */
   const imgObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(!entry.isIntersecting) return;
@@ -1504,11 +1689,8 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
   function observeNewImages(root){
     root.querySelectorAll('img[data-src]').forEach(img => imgObserver.observe(img));
   }
-
-  /* Observe images already in DOM */
   observeNewImages(document);
 
-  /* Watch for newly injected images (from card builders) */
   const mutObs = new MutationObserver(mutations => {
     mutations.forEach(m => m.addedNodes.forEach(node => {
       if(node.nodeType !== 1) return;
@@ -1518,7 +1700,6 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
   });
   mutObs.observe(document.body, {childList:true, subtree:true});
 
-  /* Also observe existing static imgs (portrait, toc, client logos) */
   document.querySelectorAll('img:not([data-src])').forEach(img => onImgLoad(img));
 
   /* ─────────────────────────────────────────
