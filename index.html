@@ -5,21 +5,27 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Leo Adam Balingit — Graphic Design · Social Media · Content Creation</title>
 
-<!-- PRECONNECT for fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<!-- Non-blocking font load -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
 <noscript><link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/></noscript>
 
-<!-- PRELOAD above-fold critical images only -->
 <link rel="preload" as="image" href="My%20Logo/My%20Logo/My%20Logo.png" fetchpriority="high"/>
 <link rel="preload" as="image" href="My%20Photo/My%20Photo/My%20Pic.JPG" fetchpriority="high"/>
+
+<!-- Preload Branding section images (above the fold on scroll — load early) -->
+<link rel="preload" as="image" href="Brand%20Guides/betAlly.png" fetchpriority="high"/>
+<link rel="preload" as="image" href="Brand%20Guides/ole777.png" fetchpriority="high"/>
+<link rel="preload" as="image" href="olimpic.jpg" fetchpriority="high"/>
+
+<!-- Preload first few Packaging images -->
+<link rel="preload" as="image" href="Product%20Packaging/Butterfly%20Skin%20product%20packaging.png" fetchpriority="high"/>
+<link rel="preload" as="image" href="Product%20Packaging/Cup%20%26%20Go%20product%20packaging.png" fetchpriority="high"/>
+<link rel="preload" as="image" href="Product%20Packaging/Eleve%20Wellness%20product%20packaging.png" fetchpriority="high"/>
 
 <link rel="icon" type="image/png" href="My%20Logo/My%20Logo/My%20Logo.png"/>
 
 <style>
-/* ── RESET ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;width:100%;max-width:100vw}
@@ -27,7 +33,6 @@ img,svg{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
 ul{list-style:none}
 
-/* ── TOKENS ── */
 :root{
   --paper:#FFFFFF;
   --paper2:#F7F6F1;
@@ -58,7 +63,7 @@ ul{list-style:none}
   --shadow-hover:0 20px 50px rgba(23,21,16,0.14),0 4px 14px rgba(23,21,16,0.08);
 }
 
-/* ── IMAGE SKELETON (fast perceived load) ── */
+/* ── IMAGE SKELETON ── */
 img{content-visibility:auto}
 .img-wrap{position:relative;overflow:hidden;background:var(--surface)}
 .img-wrap::before{
@@ -214,9 +219,7 @@ hr.rule{border:none;border-top:1px solid var(--line)}
 .toc-image{flex:1;display:flex;min-height:0;padding:0 10px 10px}
 .toc-image img{width:100%;height:100%;min-height:185px;object-fit:cover;object-position:center top;background:#f7f7f7}
 
-/* ═══════════════════════════════
-   BRANDS GRID
-═══════════════════════════════ */
+/* ── BRANDS GRID ── */
 .brands-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .brand-card,.logo-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:22px 14px 18px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:14px;text-align:center;min-height:184px;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s}
 .brand-card:hover,.logo-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);border-color:var(--amber)}
@@ -256,9 +259,7 @@ hr.rule{border:none;border-top:1px solid var(--line)}
 .email-feature{display:block;width:min(100%,920px);margin:0 auto}
 .email-feature img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);box-shadow:var(--shadow);object-fit:contain}
 
-/* ═══════════════════════════════════════════════════
-   INSTAGRAM-STYLE CARD
-═══════════════════════════════════════════════════ */
+/* ── INSTAGRAM-STYLE CARD ── */
 .ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .ig-card{background:#fff;border:1px solid #dbdbdb;border-radius:12px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 12px rgba(0,0,0,0.07);transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .35s;cursor:pointer;text-decoration:none;color:inherit}
 .ig-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,0.13)}
@@ -269,7 +270,6 @@ hr.rule{border:none;border-top:1px solid var(--line)}
 .ig-dots{display:flex;gap:2.5px;flex-shrink:0}
 .ig-dots span{width:3px;height:3px;background:#aaa;border-radius:50%;display:block}
 
-/* ── IMAGE WRAP with skeleton ── */
 .ig-image-wrap{width:100%;aspect-ratio:1/1;background:var(--surface);overflow:hidden;flex-shrink:0;position:relative}
 .ig-image-wrap::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--surface) 25%,var(--surface2) 50%,var(--surface) 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;z-index:0}
 .ig-image-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .3s ease;position:relative;z-index:1;opacity:0}
@@ -281,7 +281,6 @@ hr.rule{border:none;border-top:1px solid var(--line)}
 .ig-card:hover .ig-image-wrap.ig-fullpage img{transform:none}
 #websiteAssets{grid-template-columns:minmax(0,620px);justify-content:center}
 
-/* ── FIX: landscape email design image wrap ── */
 .ig-image-wrap.ig-landscape{
   aspect-ratio:auto;
   min-height:280px;
@@ -292,10 +291,7 @@ hr.rule{border:none;border-top:1px solid var(--line)}
   justify-content:center;
   overflow:hidden;
 }
-.ig-image-wrap.ig-landscape::before{
-  /* keep shimmer behind while loading */
-  z-index:0;
-}
+.ig-image-wrap.ig-landscape::before{z-index:0}
 .ig-image-wrap.ig-landscape img{
   width:100%;
   height:auto;
@@ -305,7 +301,6 @@ hr.rule{border:none;border-top:1px solid var(--line)}
   z-index:1;
   opacity:0;
   transition:opacity .3s ease;
-  /* no transform scale on landscape so full image is always visible */
 }
 .ig-image-wrap.ig-landscape img.loaded{opacity:1}
 .ig-card:hover .ig-image-wrap.ig-landscape img{transform:none}
@@ -319,9 +314,7 @@ hr.rule{border:none;border-top:1px solid var(--line)}
 .ig-caption-user{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;color:#111}
 .ig-caption-text{font-family:'Inter',sans-serif;font-size:10.5px;color:#555;margin-top:1px;line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 
-/* ════════════════════════════════════════
-   DIGITAL ADS CAROUSEL
-════════════════════════════════════════ */
+/* ── DIGITAL ADS CAROUSEL ── */
 .ads-carousel-wrap{position:relative;width:100%;user-select:none}
 .ads-carousel-stack{display:flex;flex-direction:column;gap:18px}
 .ads-carousel-viewport{overflow:hidden;border-radius:var(--radius)}
@@ -401,9 +394,7 @@ hr.rule{border:none;border-top:1px solid var(--line)}
 .process-step .p-title{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:-0.01em;margin-bottom:.25rem;color:var(--ink)}
 .process-step .p-desc{font-size:11.5px;color:var(--ink3);line-height:1.5}
 
-/* ─────────────────────────────────────────
-   VIDEO THUMBNAIL / PLAY BUTTON OVERLAY
-───────────────────────────────────────── */
+/* ── VIDEO THUMBNAIL / PLAY BUTTON ── */
 .video-thumb-canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;pointer-events:none;transition:opacity .3s ease}
 .video-play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.93);display:flex;align-items:center;justify-content:center;z-index:3;pointer-events:none;transition:opacity .25s,transform .25s;box-shadow:0 4px 20px rgba(0,0,0,0.28)}
 .video-play-btn svg{width:22px;height:22px;color:var(--clay-d);margin-left:3px}
@@ -450,7 +441,7 @@ hr.rule{border:none;border-top:1px solid var(--line)}
 .form-submit{margin-top:.4rem;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--ink);color:var(--white);padding:12px 24px;border-radius:100px;border:none;cursor:pointer;transition:background .25s,transform .25s,box-shadow .25s}
 .form-submit:hover{background:var(--amber);color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,129,15,0.30)}
 
-/* ── FOOTER / THANKS ── */
+/* ── FOOTER ── */
 .thanks{background:var(--surface);color:var(--ink);padding:6rem 0;text-align:center;position:relative;overflow:hidden;border-top:1px solid var(--line)}
 .thanks::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%, rgba(201,129,15,0.08), transparent 65%);pointer-events:none}
 .thanks-title{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-0.03em;color:var(--ink)}
@@ -464,7 +455,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
 .foot-links a:hover{color:var(--ink);border-color:var(--clay)}
 .foot-meta{font-family:var(--mono);font-size:10px;color:var(--ink3)}
 
-/* ════════════════ RESPONSIVE 880px ════════════════ */
+/* ── RESPONSIVE 880px ── */
 @media(max-width:880px){
   .logo-grid{grid-template-columns:repeat(2,1fr)}
   .asset-grid{grid-template-columns:repeat(2,1fr)}
@@ -885,7 +876,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
   </section>
 </div>
 
-<!-- ═══ 03 SOCIAL MEDIA MANAGEMENT ═══ -->
+<!-- ═══ 03 SOCIAL MEDIA ═══ -->
 <div class="band" id="social-media">
   <p class="band-tag reveal">03 — Strategy</p>
   <h2 class="band-title reveal">Social Media Management</h2>
@@ -948,7 +939,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
   </section>
 </div>
 
-<!-- ═══ 04 CONTENT CREATION / VIDEO EDITING ═══ -->
+<!-- ═══ 04 CONTENT CREATION ═══ -->
 <div class="band" id="content-creation">
   <p class="band-tag reveal">04 — Video</p>
   <h2 class="band-title reveal">Content Creation / Video Editing</h2>
@@ -964,8 +955,6 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
       <p class="video-copy reveal d2">Short-form edits and a long-form vlog sample, arranged as one clean video portfolio section.</p>
     </div>
     <div class="video-grid video-reels">
-
-      <!-- REEL 1 -->
       <div class="video-card reveal d1">
         <div class="video-frame" id="vf-wall">
           <span class="video-pill">Reel</span>
@@ -976,8 +965,6 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
         </div>
         <div class="video-info"><div class="video-name">Wall Decors</div><div class="video-type">Reel / Video Editing</div></div>
       </div>
-
-      <!-- REEL 2 -->
       <div class="video-card reveal d2">
         <div class="video-frame" id="vf-portraits">
           <span class="video-pill">Reel</span>
@@ -988,8 +975,6 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
         </div>
         <div class="video-info"><div class="video-name">Portraits</div><div class="video-type">Reel / Video Editing</div></div>
       </div>
-
-      <!-- REEL 3 -->
       <div class="video-card reveal d3">
         <div class="video-frame" id="vf-kidbooks">
           <span class="video-pill">Reel</span>
@@ -1000,8 +985,6 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
         </div>
         <div class="video-info"><div class="video-name">Kid Books</div><div class="video-type">Reel / Video Editing</div></div>
       </div>
-
-      <!-- REEL 4 -->
       <div class="video-card reveal d4">
         <div class="video-frame" id="vf-igaming">
           <span class="video-pill">Reel</span>
@@ -1012,10 +995,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
         </div>
         <div class="video-info"><div class="video-name">iGaming</div><div class="video-type">Reel / Video Editing</div></div>
       </div>
-
     </div>
-
-    <!-- VLOG FEATURE -->
     <div class="video-feature reveal d2">
       <div class="video-feature-copy">
         <div class="video-eyebrow">04b &mdash; Long-form edit</div>
@@ -1030,7 +1010,6 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
         <div class="video-info"><div class="video-name">Japan Vlog Part 1</div><div class="video-type">YouTube / Long-form Edit</div></div>
       </div>
     </div>
-
     <div class="process-row reveal">
       <div class="process-step"><div class="p-num">Step 01</div><div class="p-title">Plan</div><div class="p-desc">Concept, references &amp; content direction</div></div>
       <div class="process-step"><div class="p-num">Step 02</div><div class="p-title">Edit</div><div class="p-desc">Pacing, sequencing &amp; story structure</div></div>
@@ -1041,7 +1020,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
   </section>
 </div>
 
-<!-- ═══ 05 AREAS OF EXPERTISE ═══ -->
+<!-- ═══ 05 EXPERTISE ═══ -->
 <div class="band" id="expertise">
   <p class="band-tag reveal">05 — Skills</p>
   <h2 class="band-title reveal">Areas of Expertise</h2>
@@ -1135,7 +1114,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
   'use strict';
 
   /* ─────────────────────────────────────────
-     LAZY IMAGE FADE-IN
+     IMAGE FADE-IN HELPER
   ───────────────────────────────────────── */
   function onImgLoad(img){
     if(img.complete && img.naturalWidth > 0){
@@ -1231,9 +1210,10 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
 
   /* ─────────────────────────────────────────
      BUILD INSTAGRAM CARD
+     eager=true → uses src directly (no lazy swap) for fast-loading sections
   ───────────────────────────────────────── */
   function createIgCard(opts){
-    const { src, name, href, username, caption, tall, fullPage, landscape } = opts;
+    const { src, name, href, username, caption, tall, fullPage, landscape, eager } = opts;
     const card = document.createElement('a');
     card.className = 'ig-card reveal';
     card.href = href || src;
@@ -1262,9 +1242,18 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
 
     const img = document.createElement('img');
     img.alt = name;
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.dataset.src = src;
+    if(eager){
+      // Direct src for priority sections — no lazy swap overhead
+      img.src = src;
+      img.loading = 'eager';
+      img.fetchPriority = 'high';
+      img.decoding = 'async';
+      onImgLoad(img);
+    } else {
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.dataset.src = src;
+    }
     imgWrap.appendChild(img);
 
     const actions = document.createElement('div');
@@ -1291,10 +1280,11 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
 
   /* ─────────────────────────────────────────
      STANDARD ASSET CARD
+     eager=true → uses src directly for Branding & Packaging
   ───────────────────────────────────────── */
   const revealDelays = ['d1','d2','d3','d4','d5','d6'];
 
-  function createAssetCard(item, type, index){
+  function createAssetCard(item, type, index, eager){
     const [name, src, kind, placeholder] = item;
     const card = document.createElement('a');
     card.className = `asset-card reveal ${revealDelays[index % revealDelays.length]}`;
@@ -1302,18 +1292,30 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
     card.target = '_blank';
     card.rel = 'noopener';
     card.setAttribute('aria-label', `Open ${name}`);
+
     const thumb = document.createElement('div');
     thumb.className = kind === 'pdf' ? 'asset-thumb asset-doc' : 'asset-thumb';
+
     if(kind === 'pdf' && !placeholder){
       thumb.textContent = 'PDF';
     } else {
       const img = document.createElement('img');
       img.alt = name;
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.dataset.src = placeholder || src;
+      const imgSrc = placeholder || src;
+      if(eager){
+        img.src = imgSrc;
+        img.loading = 'eager';
+        img.fetchPriority = 'high';
+        img.decoding = 'async';
+        onImgLoad(img);
+      } else {
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.dataset.src = imgSrc;
+      }
       thumb.appendChild(img);
     }
+
     const info = document.createElement('div');
     info.className = 'asset-info';
     const title = document.createElement('div');
@@ -1329,73 +1331,100 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
 
   /* ─────────────────────────────────────────
      DATA
+     eager:true on Branding & Packaging = images load immediately with high priority,
+     no IntersectionObserver swap needed
   ───────────────────────────────────────── */
   const portfolioGroups = [
-    { id:'brandingAssets', type:'Brand Guidelines', mode:'standard', items:[
-      ['BetAlly Brand Guide','Brand Guides/BetAlly Brand Guide.pdf','pdf','betAlly.png'],
-      ['OLE777 Brand Guide','Brand Guides/OLE777 Brand Guide.pdf','pdf','ole777.png'],
-      ['Olimpic Brand Guide','olimpic.jpg','image']
-    ]},
-    { id:'packagingAssets', type:'Package / Merch', mode:'standard', items:[
-      ['Butterfly Skin Product Packaging','Product Packaging/Butterfly Skin product packaging.png','image'],
-      ['Cup & Go Product Packaging','Product Packaging/Cup & Go product packaging.png','image'],
-      ['Eleve Wellness Product Packaging','Product Packaging/Eleve Wellness product packaging.png','image'],
-      ['Fork Product Packaging','Product Packaging/fork product packaging.png','image'],
-      ['Nature Cosmetic','Product Packaging/nature cosmetic.png','image'],
-      ['Unwind Product Packaging','Product Packaging/Unwind product packaging.png','image'],
-      ['Veraluxe Product Packaging','Product Packaging/veraluxe product packaging.png','image'],
-      ['BetAlly All Giveaways','Product Packaging/BetAlly/BetAlly All Giveaways.png','image'],
-      ['BetAlly Shirt 1','Product Packaging/BetAlly/BetAlly Shirt 1.jpg','image'],
-      ['BetAlly Shirt 2','Product Packaging/BetAlly/BetAlly Shirt 2.jpg','image'],
-      ['BetAlly Shirt 3','Product Packaging/BetAlly/BetAlly Shirt 3.jpg','image'],
-      ['BetAlly Merch Set A','Product Packaging/BetAlly/magnific_change-the-color-of-cap-t_CHza1OMEEy.png','image'],
-      ['BetAlly Merch Set B','Product Packaging/BetAlly/magnific_create-a-highquality-prem_LUodHbaswO.png','image'],
-      ['BetAlly Merch Set C','Product Packaging/BetAlly/magnific_create-a-premium-professi_WMlzYWJcXe.png','image']
-    ]},
-    { id:'boothAssets', type:'Booth Design', mode:'instagram', username:'leoadambalingit', items:[
-      ['January 5','Booth Designs/Entry Level 2 Mock Up.png'],
-      ['January 7','Booth Designs/Mid Level Mock Up 1.png'],
-      ['January 10','Booth Designs/Mid Level Mockup 2.png'],
-      ['January 12','Booth Designs/Top Level Mock Up 1.png'],
-      ['January 15','Booth Designs/Top Level Mock Up 2.png']
-    ]},
-    { id:'emailAssets', type:'Email Design', mode:'instagram', landscape:true, username:'leoadambalingit', items:[
-      ['Email Design','Cle777design.jpg']
-    ]},
-    { id:'websiteAssets', type:'Website Design', mode:'instagram', fullPage:true, username:'leoadambalingit', items:[
-      ['Website Design','Website Design/Elementor Homepage.png']
-    ]},
-    { id:'flyerAssets', type:'Flyer', mode:'standard', items:[
-      ['BetAlly Flyer 1','Flyers/BetAlly Flyer 1.png','image'],
-      ['BetAlly Flyer 2','Flyers/BetAlly Flyer 2.png','image']
-    ]},
-    { id:'socialPostAssets', type:'Social Media Post', mode:'instagram', username:'leoadambalingit', items:[
-      ['April 1','Social Media Posts/April 1.png'],['April 3','Social Media Posts/April 3.png'],
-      ['April 8','Social Media Posts/April 8.png'],['April 10','Social Media Posts/April 10.png'],
-      ['April 14','Social Media Posts/April 14.png'],['April 16','Social Media Posts/April 16.png'],
-      ['April 18','Social Media Posts/April 18.png'],['April 22','Social Media Posts/April 22.png'],
-      ['April 24','Social Media Posts/April 24.png'],['April 28','Social Media Posts/April 28.png'],
-      ['April 30','Social Media Posts/April 30.png'],['March 3','Social Media Posts/March 3.png'],
-      ['March 4','Social Media Posts/March 4.png'],['March 5','Social Media Posts/March 5.png'],
-      ['March 5','Social Media Posts/March 5 Repost.png'],['March 7','Social Media Posts/March 7.png'],
-      ['March 7','Social Media Posts/March 7 Repost.png'],['March 10','Social Media Posts/March 10.png'],
-      ['March 10','Social Media Posts/March 10 New.png'],['March 12','Social Media Posts/March 12.png'],
-      ['March 12','Social Media Posts/March 12 New.png'],['March 14','Social Media Posts/March 14 New.png'],
-      ['March 17','Social Media Posts/March 17.png'],['March 19','Social Media Posts/March 19.png'],
-      ['March 21','Social Media Posts/March 21.png'],['March 24','Social Media Posts/March 24.png'],
-      ['March 26','Social Media Posts/March 26.png'],['March 28','Social Media Posts/March 28.png'],
-      ['March 31','Social Media Posts/March 31.png'],['April 10','Social Media Posts/Message 1.2.png'],
-      ['June 2','Social Media Posts/Message 2.png'],['June 3','Social Media Posts/Message 3.png'],
-      ['June 4','Social Media Posts/Message 4.png'],['June 5','Social Media Posts/Message 5.png'],
-      ['July 6','Social Media Posts/Message 6.png'],['July 7','Social Media Posts/Message 7.png'],
-      ['July 8','Social Media Posts/Message 8.png'],['July 9','Social Media Posts/Message 9.png'],
-      ['July 10','Social Media Posts/Message 10.png']
-    ]}
+    {
+      id:'brandingAssets', type:'Brand Guidelines', mode:'standard',
+      eager: true,   // ← HIGH PRIORITY: load immediately
+      items:[
+        ['BetAlly Brand Guide','Brand Guides/BetAlly Brand Guide.pdf','pdf','betAlly.png'],
+        ['OLE777 Brand Guide','Brand Guides/OLE777 Brand Guide.pdf','pdf','ole777.png'],
+        ['Olimpic Brand Guide','olimpic.jpg','image']
+      ]
+    },
+    {
+      id:'packagingAssets', type:'Package / Merch', mode:'standard',
+      eager: true,   // ← HIGH PRIORITY: load immediately
+      items:[
+        ['Butterfly Skin Product Packaging','Product Packaging/Butterfly Skin product packaging.png','image'],
+        ['Cup & Go Product Packaging','Product Packaging/Cup & Go product packaging.png','image'],
+        ['Eleve Wellness Product Packaging','Product Packaging/Eleve Wellness product packaging.png','image'],
+        ['Fork Product Packaging','Product Packaging/fork product packaging.png','image'],
+        ['Nature Cosmetic','Product Packaging/nature cosmetic.png','image'],
+        ['Unwind Product Packaging','Product Packaging/Unwind product packaging.png','image'],
+        ['Veraluxe Product Packaging','Product Packaging/veraluxe product packaging.png','image'],
+        ['BetAlly All Giveaways','Product Packaging/BetAlly/BetAlly All Giveaways.png','image'],
+        ['BetAlly Shirt 1','Product Packaging/BetAlly/BetAlly Shirt 1.jpg','image'],
+        ['BetAlly Shirt 2','Product Packaging/BetAlly/BetAlly Shirt 2.jpg','image'],
+        ['BetAlly Shirt 3','Product Packaging/BetAlly/BetAlly Shirt 3.jpg','image'],
+        ['BetAlly Merch Set A','Product Packaging/BetAlly/magnific_change-the-color-of-cap-t_CHza1OMEEy.png','image'],
+        ['BetAlly Merch Set B','Product Packaging/BetAlly/magnific_create-a-highquality-prem_LUodHbaswO.png','image'],
+        ['BetAlly Merch Set C','Product Packaging/BetAlly/magnific_create-a-premium-professi_WMlzYWJcXe.png','image']
+      ]
+    },
+    {
+      id:'boothAssets', type:'Booth Design', mode:'instagram', username:'leoadambalingit',
+      items:[
+        ['January 5','Booth Designs/Entry Level 2 Mock Up.png'],
+        ['January 7','Booth Designs/Mid Level Mock Up 1.png'],
+        ['January 10','Booth Designs/Mid Level Mockup 2.png'],
+        ['January 12','Booth Designs/Top Level Mock Up 1.png'],
+        ['January 15','Booth Designs/Top Level Mock Up 2.png']
+      ]
+    },
+    {
+      id:'emailAssets', type:'Email Design', mode:'instagram', landscape:true, username:'leoadambalingit',
+      items:[
+        ['Email Design','Cle777design.jpg']
+      ]
+    },
+    {
+      id:'websiteAssets', type:'Website Design', mode:'instagram', fullPage:true, username:'leoadambalingit',
+      items:[
+        ['Website Design','Website Design/Elementor Homepage.png']
+      ]
+    },
+    {
+      id:'flyerAssets', type:'Flyer', mode:'standard',
+      items:[
+        ['BetAlly Flyer 1','Flyers/BetAlly Flyer 1.png','image'],
+        ['BetAlly Flyer 2','Flyers/BetAlly Flyer 2.png','image']
+      ]
+    },
+    {
+      id:'socialPostAssets', type:'Social Media Post', mode:'instagram', username:'leoadambalingit',
+      items:[
+        ['April 1','Social Media Posts/April 1.png'],['April 3','Social Media Posts/April 3.png'],
+        ['April 8','Social Media Posts/April 8.png'],['April 10','Social Media Posts/April 10.png'],
+        ['April 14','Social Media Posts/April 14.png'],['April 16','Social Media Posts/April 16.png'],
+        ['April 18','Social Media Posts/April 18.png'],['April 22','Social Media Posts/April 22.png'],
+        ['April 24','Social Media Posts/April 24.png'],['April 28','Social Media Posts/April 28.png'],
+        ['April 30','Social Media Posts/April 30.png'],['March 3','Social Media Posts/March 3.png'],
+        ['March 4','Social Media Posts/March 4.png'],['March 5','Social Media Posts/March 5.png'],
+        ['March 5','Social Media Posts/March 5 Repost.png'],['March 7','Social Media Posts/March 7.png'],
+        ['March 7','Social Media Posts/March 7 Repost.png'],['March 10','Social Media Posts/March 10.png'],
+        ['March 10','Social Media Posts/March 10 New.png'],['March 12','Social Media Posts/March 12.png'],
+        ['March 12','Social Media Posts/March 12 New.png'],['March 14','Social Media Posts/March 14 New.png'],
+        ['March 17','Social Media Posts/March 17.png'],['March 19','Social Media Posts/March 19.png'],
+        ['March 21','Social Media Posts/March 21.png'],['March 24','Social Media Posts/March 24.png'],
+        ['March 26','Social Media Posts/March 26.png'],['March 28','Social Media Posts/March 28.png'],
+        ['March 31','Social Media Posts/March 31.png'],['April 10','Social Media Posts/Message 1.2.png'],
+        ['June 2','Social Media Posts/Message 2.png'],['June 3','Social Media Posts/Message 3.png'],
+        ['June 4','Social Media Posts/Message 4.png'],['June 5','Social Media Posts/Message 5.png'],
+        ['July 6','Social Media Posts/Message 6.png'],['July 7','Social Media Posts/Message 7.png'],
+        ['July 8','Social Media Posts/Message 8.png'],['July 9','Social Media Posts/Message 9.png'],
+        ['July 10','Social Media Posts/Message 10.png']
+      ]
+    }
   ];
 
   portfolioGroups.forEach(group => {
     const grid = document.getElementById(group.id);
     if(!grid) return;
+    const isEager = group.eager === true;
+
     if(group.mode === 'instagram'){
       const cards = group.items.map((item, i) => {
         const [name, src] = item;
@@ -1405,14 +1434,17 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
           caption: name,
           tall: group.tall || false,
           fullPage: group.fullPage || false,
-          landscape: group.landscape || false
+          landscape: group.landscape || false,
+          eager: isEager
         });
         card.classList.add(revealDelays[i % revealDelays.length]);
         return card;
       });
       grid.replaceChildren(...cards);
     } else {
-      grid.replaceChildren(...group.items.map((item, index) => createAssetCard(item, group.type, index)));
+      grid.replaceChildren(...group.items.map((item, index) =>
+        createAssetCard(item, group.type, index, isEager)
+      ));
     }
   });
 
@@ -1438,7 +1470,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
     const track = document.getElementById(trackId);
     if(!track) return;
     const cards = [...items, ...items].map(([name, src], index) => {
-      const card = createIgCard({ src, name, href: src, username: 'leoadambalingit', caption: name });
+      const card = createIgCard({ src, name, href: src, username: 'leoadambalingit', caption: name, eager: false });
       card.classList.remove('reveal');
       if(index >= items.length) card.setAttribute('aria-hidden','true');
       return card;
@@ -1591,6 +1623,8 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
 
   /* ─────────────────────────────────────────
      UNIFIED INTERSECTION OBSERVER
+     Wider rootMargin (600px) = images start fetching
+     well before they scroll into view
   ───────────────────────────────────────── */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1611,6 +1645,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
 
   document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(el => io.observe(el));
 
+  // Wider rootMargin for lazy image swap — starts loading 600px before viewport
   const imgObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(!entry.isIntersecting) return;
@@ -1622,7 +1657,7 @@ footer{padding:2.4rem 2.5rem;display:flex;align-items:center;justify-content:spa
       }
       imgObserver.unobserve(img);
     });
-  }, {threshold:0, rootMargin:'0px 0px 300px 0px'});
+  }, {threshold:0, rootMargin:'0px 0px 600px 0px'});
 
   function observeNewImages(root){
     root.querySelectorAll('img[data-src]').forEach(img => imgObserver.observe(img));
